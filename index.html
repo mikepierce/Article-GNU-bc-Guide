@@ -27,8 +27,8 @@
 <h1> The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians</h1>
 <ul>
     <li> <address><a href="..">Mike Pierce</a></address></li>
-    <li> Last tended 1 Jan 2023 </li>
-    <li> Suggest edits: <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">fork on GitHub</a></li>
+    <li> Last tended 4 January 2023 </li>
+    <li> Edit this article: <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">fork on GitHub</a></li>
 </ul>
 </header>
 
@@ -37,24 +37,27 @@
 <p>
 The <a href="https://en.wikipedia.org/wiki/Bc_(programming_language)" title="Wikipedia: bc (programming language)">GNU basic calculator (bc)</a>
 is a free and open source command-line program 
-that can perform arbitrary-precision calculations
+that performs arbitrary-precision calculations
 using the full capabilities of any computer.
 This tool is more robust than most OS’s default calculator app,
-faster than <a href="https://gen.medium.com/big-calculator-how-texas-instruments-monopolized-math-class-67ee165045dc" title="Big Calculator: How Texas Instruments Monopolized Math Class">pervading TI calculators</a>,
-but more convenient than the computational sledgehammers
-Mathematica and Jupyter.
+much faster than a TI calculator,
+and more convenient to use than the computational sledgehammers
+Mathematica and Jupyter/python.
 And it’s only <q>basic</q> by default;
-bc is a full programming language,
-boundlessly extendable with user-written functions.
+bc is a full programming language too, 
+extendable with user-written functions.
 </p>
 <p>
 Professionally speaking, bc is the most elegant tool 
-for mathematicians to realize 
+for mathematicians to attain 
 <a href="https://urbigenous.net/library/power.html" title="a short story by Isaac Asimov">the feeling of power</a>
 that comes with wielding a computer to do arbitrarily precise computations.
-Pedagogically speaking, bc provides both an easy way
-to demonstrate the computational capabilities of a computer to students,
-and an accessible avenue for them to feel that power themselves.
+Pedagogically speaking, bc provides many benefits:
+a means to subvert the pervasiveness of 
+<a href="https://gen.medium.com/big-calculator-how-texas-instruments-monopolized-math-class-67ee165045dc" title="Big Calculator: How Texas Instruments Monopolized Math Class">proprietary hardware </a>,
+and software in classrooms,
+an easy way to demonstrate the computational capabilities of a computer to students,
+and also an accessible avenue for students to operate a computer as a calculator for themselves.
 </p>
 </section>
 
@@ -77,7 +80,7 @@ and an accessible avenue for them to feel that power themselves.
         <li> <a href="#functions"> Defining Functions </a></li>
         <li> <a href="#print">  Printing Output &amp; Reading Input </a></li>
         <li> <a href="#control"> Control-Flow Syntax &amp; Arithmetic </a></li>
-        <li> <a href="#arrays"> Arrays Variables &amp; Loops </a></li>
+        <li> <a href="#arrays"> Array Variables &amp; Loops </a></li>
         <li> <a href="#limits"> Limitations of bc </a></li>
     </ul>
     <!-- <li> <a href="#readline"> GNU Readline Keyboard Shortcuts </a></li> -->
@@ -91,7 +94,7 @@ and an accessible avenue for them to feel that power themselves.
 <h2 id="nix"> Installing bc on Linux or macOS </h2>
 <p>
 On macOS and most Linux operating systems bc will already be installed. 
-If not, install it using your package manager.
+If not, you can install it using your package manager.
 For example on a Debian-based OS like Ubuntu 
 run the command <code>sudo apt install bc</code>.
 Similarly on macOS you can install bc via 
@@ -107,8 +110,8 @@ It’s also helpful to keep a running collection
 of functions you write in a file, say <em>functions.bc</em>, 
 which you load into bc on startup.
 All of this can be done automatically when you start bc
-by setting the environment variable <code>BC_ENV_ARGS</code>;
-include this line in your shell’s (bash, zsh, …) configuration file:
+by setting the environment variable <code>BC_ENV_ARGS</code>,
+by including this line in your shell’s (bash, zsh, …) configuration file:
 </p>
 <pre><code class="language-bash">
 export BC_ENV_ARGS="-lq /PATH/TO/functions.bc"
@@ -131,8 +134,8 @@ and the <a href="http://gnuwin32.sourceforge.net/downlinks/bc-dep-zip.php">Depen
 zip archives from the GnuWin page.
 Extract those zip archives, and move the files somewhere convenient.
 Copy the file <em>readline5.dll</em> from the dependencies archive
-into the same directory as <em>bc.exe</em>,
-and you’ll probably want to keep an auxiliary file of functions you write,
+into the same directory as <em>bc.exe</em>.
+You’ll want to keep an auxiliary file of functions you write,
 <em>functions.bc</em>, in this same directory.
 </p>
 <figure>
@@ -146,7 +149,7 @@ To suppress bc’s <em>copyright</em> banner,
 and automatically load the <a href="#mathlib">math library</a>
 and your auxiliary functions when you start bc, 
 create a shortcut to <em>bc.exe</em> that includes the arguments 
-<code>-lq functions.bc</code> to bc in the Target of the shortcut file.
+<code>-lq functions.bc</code> to bc in the <em>Target</em> of the shortcut file.
 You could name the shortcut file something distinctive like <em>bcmath</em>
 and start it quickly by searching <q>bcmath</q> under the Windows Start menu.
 </p>
@@ -162,10 +165,10 @@ and start it quickly by searching <q>bcmath</q> under the Windows Start menu.
 <h2 id="usage"> Getting Started Using bc</h2>
 <p>
 The <a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html">bc manual</a> 
-comprehensively describes its usage and features.
-Here is a distillation of some key ideas and quirks of using bc, 
-and list a few miscellaneous tips.
-All the code snippets in this article
+comprehensively describes its usage and features,
+so this quick-start guide will be a simple distillation 
+of the key ideas and quirks of using bc, 
+and a few miscellaneous tips.
 </p>
 <p>
 Since bc is a command-line calculator,
@@ -174,13 +177,15 @@ Running bc, simply type in an expression, press <kbd>Enter</kbd> to evaluate it,
 and the result will be printed on the next line.
 To stop any currently running computation (because it’s taking longer than expected)
 press <kbd>Ctrl</kbd>+<kbd>C</kbd>.
-To quit bc either type the command <code>quit</code>
+To quit and exit bc, 
+either type the command <code>quit</code>
 or press <kbd>Ctrl</kbd>+<kbd>D</kbd>.
 </p>
 <p>
 Any text preceded by a <code>#</code> character is ignored by bc,
-which is useful for leaving comments in code.
-In this article I’ll indicate the output of some bc code with a <code>#</code>.
+which is used for leaving comments in code.
+In this guide the output of any bc code 
+will be indicated with a <code>#</code>.
 </p>
 <pre><code class="language-python">
 3 + 4
@@ -190,7 +195,7 @@ In this article I’ll indicate the output of some bc code with a <code>#</code>
 <h3 id="var">Using Variables</h3>
 <p>
 You can assign values to variables using <code>=</code>,
-helpful for longer computations.
+which is helpful for longer computations.
 </p>
 <pre><code class="language-python">
 a = 13846000729558555774154292420
@@ -200,7 +205,7 @@ sqrt(hypotenuse_squared)
 # 13846000729702111914156643652.00000000000000000000
 </code></pre>
 <p>
-Variables don’t have to be initialized like they do in C.
+Variables don’t have to be initialized like they do in most programming languages.
 GNU bc will just infer the data type of your variable:
 either a number or an <a href="#arrays">array of numbers</a>.
 Variable names must start with a lowercase letter, 
@@ -231,9 +236,11 @@ sqrt(.)
 <h3 id="#scale"> Controlling the Scale of bc’s Computations</h3>
 <p>
 The special variable <code>scale</code> 
-gives you some control over the precision of bc’s output,
+gives you control over the fractional precision of bc’s output,
 setting the number of digits 
-to the right of the decimal point that bc will store during computations.
+to the right of the <a href="https://en.wikipedia.org/wiki/Decimal_separator#Radix_point" title="Wikipedia: Radix Point">radix point</a> 
+(decimal point in base ten)
+that bc will store during computations.
 This simple control over the precision of real-number calculations
 is the shining feature of bc.
 Loading the <a href="#mathlib">math library</a> 
@@ -249,10 +256,10 @@ sqrt(2)
 # 1.414213562373095048801688724209698078569671
 </code></pre>
 <p>
-In addition <em>setting</em> the scale, 
-there are functions <code>length()</code> and <code>scale()</code>
-that respectively return the number of an input’s significant digits 
-and the number of significant digits to the right of the decimal.
+Conversely, there is a function <code>length()</code> 
+that returns the number of an input’s significant digits,
+and a function <code>scale()</code>
+that returns the number of significant digits to the right of the radix point.
 </p>
 <pre><code class="language-python">
 gelfond = 23.1406926
@@ -276,7 +283,7 @@ scale=2
 For a more stark example, see how bc could lead us astray from the fact that
 \(\lim_{x \to 0} \frac{\ln(x+1)}{x} = 1\).
 Setting <code> scale=5 </code> and 
-noting <code>l()</code> is the natural log function:
+using <code>l()</code> as the natural log function:
 </p>
 <pre><code class="language-python">
 x=10^(-1); l(x+1)/x
@@ -313,15 +320,14 @@ requires one dive into the world of
 <p>
 Simply doing arithmetic in bc, the first thing you’ll notice
 is that bc can’t immediately handle non-whole numbers as exponents.
-Trying to evaluate \(2.71^{3.14}\) as 
-<code>2.71^3.14</code> will throw an error. 
-Instead you’ll need to have a custom function for this,
-based on the <code>e(x)</code>\( = \mathrm{e}^x\) 
-and <code>l(x)</code>\( = \ln(x)\) 
-functions from bc’s math library,
+Trying to calculate \(2.71^{3.14}\) as a decimal number 
+with the command <code>2.71^3.14</code> will throw an error. 
+Instead you’ll need to use a custom function for this,
+based on the functions <code>e(x)</code>\( = \mathrm{e}^x\) 
+and <code>l(x)</code>\( = \ln(x)\) from bc’s math library,
 which do accept fractional parameters.
 Here’s a <code>pow</code> function that evaluates \(b^x\)
-for an arbitrary base and exponent.
+for an arbitrary base <code>b</code> and exponent <code>x</code>.
 </p>
 <pre><code class="language-c">
 define pow (b,x) { return e(x*l(b)) }
@@ -330,7 +336,7 @@ define pow (b,x) { return e(x*l(b)) }
 Then you can compute \(2.71^{3.14}\) as <code>pow(2.71, 3.14)</code>.
 That’s a good function to keep in your auxiliary <em>functions.bc</em> file.
 Details about the <a href="#mathlib">math library</a> 
-and <a href="#programming">writing functions</a> can be found below.
+and <a href="#programming">writing functions</a> can be found later in this guide.
 </p>
 
 <h3 id="int">Getting the Integer Part of a Number</h3>
@@ -339,17 +345,19 @@ The modus operandi of bc is to work at some fixed scale,
 so it doesn’t store the integer part of a number for easy access.
 You can calculate the integer part of a number
 by temporarily changing the scale though.
-This is a helpful function to keep in your auxiliary functions file.
 </p>
 <pre><code class="language-c">
 define int(x) {auto s; s=scale; scale=0; x/=1; scale=s; return x;}
 </code></pre>
+<p>
+This is also a helpful function to keep in your auxiliary functions file.
+</p>
 
 <h3 id="mathlib"> Extending bc with its Math Library </h3>
 <p>
 Besides support for basic arithmetic operations 
 like addition, multiplication, integer exponentiation, etc,
-the only mathematical function built into bc is <code>sqrt</code>.
+the only mathematical function built into bc is <code>sqrt()</code>.
 Loading bc’s math library with the <code>-l</code> option
 defines the following additional functions:
 </p>
@@ -367,7 +375,8 @@ Only the trigonometric functions sine, cosine, and arctangent are included
 but really that’s all you need:
 all other trigonometric functions can be expressed in terms of these three.
 Doing this is left to the user as an exercise,
-… or you can find <a href="#aux">my implementations below</a>.
+… or you can find 
+<a href="#aux">my implementations at the end of this guide</a>.
 </p>
 <p>
 Since the trigonometric functions in this library 
@@ -408,7 +417,7 @@ If you have no programming experience you should read the
 <a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html#SEC15"><em>Statements</em> section of the bc manual</a>
 for a more thorough treatment.
 Otherwise if you have some experience programming in C or in any other modern language, 
-then this section will help you translate that experience over to bc. 
+this section will help you translate that experience over to bc. 
 </p>
 
 <h3 id="functions"> Defining Functions </h3>
@@ -445,10 +454,6 @@ define fibonacci (n) {
     return fibonacci(n-1) + fibonacci(n-2)
 }
 </code></pre>
-<p>
-You can keep helpful functions in an auxiliary
-<em>functions.bc</em> file for regular use.
-</p>
 
 <h3 id="print"> Printing Output &amp; Reading Input</h3>
 <p>
@@ -461,7 +466,7 @@ The <code>print</code> command takes a comma-separated list of things
 and prints them to the terminal,
 while the command <code>x = read()</code> will store
 a number entered interactively by a user to the variable <code>x</code>.
-For example,
+For example:
 </p>
 <pre><code class="language-c">
 define fibonacci_ask () { 
@@ -480,13 +485,13 @@ for input on that same line it printed the question.
 
 <h3 id="control"> Control-Flow Syntax &amp; Arithmetic</h3>
 <p>
-All of the control-flow statements 
+All of the control-flow keywords 
 <code>if</code>, <code>else</code>, <code>for</code>, <code>while</code>,
 <code>continue</code>, <code>break</code>, and <code>halt</code> 
 are supported in GNU bc. 
 Instead of the keywords <q>true</q> and <q>false</q> 
 bc uses the numbers <code>1</code> and <code>0</code> respectively.
-To provide some silly illustrative examples,
+To provide some illustrative examples of the use of these keywords:
 suppose you need a quick test to tell if two integers 
 <code>a</code> and <code>b</code> such that \(2 \lt a \lt b \)
 might be adjacent Fibonacci numbers:
@@ -523,14 +528,14 @@ print x
 </code></pre>
 <p>
 With the exception of C’s bitwise operations 
-and a couple other special cases, bc shares all of C’s 
+and two other special cases, bc shares all of C’s 
 <a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html#SEC10">arithmetic, assignment, comparison, and logical operators</a>.
-About two cases are these:
+Those two special cases are these:
 </p>
 <ul>
     <li>
-        The caret <code>^</code> is an <em>integer</em> exponential operator in bc, 
-        not a bitwise operator, and <code>a ^= b</code> 
+        The caret <code>^</code> is an <em>integer</em> exponential operator, 
+        not a bitwise operator. The command <code>a ^= b</code> 
         does the same thing as <code>a = a^b</code>.
     </li>
     <li>
@@ -575,15 +580,15 @@ letting <code>a = a[1]^2 + a[2]^2</code> in that last example
 would have been just fine.
 Like simple variables, arrays don’t have to be initialized,
 and the size of an array never needs to be declared.
-The size of an array in bc is 
-capped at <code>BC_DIM_MAX</code>,
-<a href="https://unix.stackexchange.com/q/704891/74616">an arbitrary value chosen at compile time</a>.
-In my current version of bc, this cap is \(2^{24}\,.\)
+The maximum size of an array in bc is 
+set as <code>BC_DIM_MAX</code>,
+<a href="https://unix.stackexchange.com/q/704891/74616">a value chosen at compile time</a>.
+In my current version of bc, this value is \(2^{24}\,.\)
 </p>
 <p>
 Arrays are useful for looping over some enumeration of data.
-For example, we can write a more efficient <code>fibonacci</code> function 
-by using a for-loop and storing previously computed fibonacci numbers 
+For example, we can write a more efficient <code>fibonacci()</code> function 
+by using a for-loop and storing previously computed Fibonacci numbers 
 in an array <code>fib</code>:
 </p>
 <pre><code class="language-c">
@@ -599,20 +604,40 @@ define fibonacci (n) {
 
 <h3 id="limits">Limitation of bc </h3>
 <p>
-But bc’s capabilities with arrays are limited;
-here’s the wall where you’ll need to decide if you
-want to use a more robust programming language.
-For example there is not built-in support for matrices 
-(arrays-of-arrays, 2D arrays).
+There are a couple limitations of bc you should keep in mind
+when considering if you’d like to use a more robust programming language.
 </p>
 <p>
-You cannot explicitly declare or print entire arrays.
-Instead you’ve got to loop over them, knowing their length,
-to assign or print their entries.
-Relatedly you can’t return an array from a function.
+In bc you cannot pass functions as parameters to other functions.
+The only variable types—and so the only entities
+that may be functions parameters—are simple variables and arrays.
+This limitation makes for messy code,
+where any function that morally <em>should</em> have a function
+as a parameter instead has to assume a globally-defined function
+of a fixed name already exists.
+I’ve been using the convention that such a function must be
+globally defined and named <code>f</code>,
+and its derivative named <code>ff</code>.
+</p>
+<p>
+You cannot explicitly define the contents of an entire array at once.
+I.e. the syntax <code>array = {8, 6, 7}</code> is not accepted,
+and instead you’d have to use:
+<pre><code class="language-python">
+array[0] = 8; array[1] = 6; array[2] = 7; 
+</code></pre>
+Similarly, since bc doesn't keep track of the size of an array,
+there is no command to print the entire contents of an array.
+Instead you must keep track of the size of an array yourself
+and loop over the indices to individually print the entries.
+This makes working with data in bc cumbersome,
+and doing any sort of statistics impossible.
+</p>
+<p>
+On a related note, you can’t return an array from a function.
 Instead you have to pass your array by reference as a parameter,
 a feature of GNU bc not documented in the manual.
-The syntax for this in demonstrated in this example.
+The syntax for this in demonstrated in this example:
 </p>
 <pre><code class="language-c">
 define fibonacci_next (*array[], n) {
@@ -630,22 +655,14 @@ fib[44]
 # 701408733
 </code></pre>
 <p>
-Furthermore, another wall: 
-you cannot pass functions as parameters to other functions.
-The only variable types—and so the only entities
-that may be functions parameters—are simple variables and arrays.
+Additionally there is not built-in support for matrices 
+(arrays-of-arrays, 2D arrays).
 </p>
 </section>
 
 <!--
 <section>
 <h3 id="readline">GNU Readline Keyboard Shortcuts</h3>
-<aside>
-    I don’t want to include this section because
-    Win32 GNU bc doesn’t support these shortcuts ...
-    even though it requires readline5.dll ...
-    why doesn’t it support these shortcuts? Windows CMD?
-</aside>
 Using bc interactively, 
 there are a few keyboard shortcuts provided by 
 <a href="https://en.wikipedia.org/wiki/GNU_Readline#Emacs_keyboard_shortcuts">GNU readline</a>
@@ -692,8 +709,18 @@ Here some of the more helpful ones.
 <section>
 <h2 id="exercises"> Exercises &amp; Challenges</h2>
 <p>
-As a mathematics instructor I am obligated to provide some exercises
-that you may use to practice and become more comfortable using bc.
+The best way to learn a new tool is on the job;
+start using bc instead of whatever basic calculator you’ve been using,
+and if you teach be sure to install it on your classroom computer
+to have at hand during a lesson.
+In case you need some initial inspiration to dive into bc,
+here are some tasks you can complete as practice.
+</p>
+<p>
+I’ve written functions to complete some of these tasks
+in my own <em>functions.bc</em> file,
+<a href="https://github.com/mikepierce/GNU-bc-Functions">which you can find on GitHub</a>,
+in case you’d like to compare solutions.
 </p>
 <ol>
     <li>
@@ -713,29 +740,28 @@ that you may use to practice and become more comfortable using bc.
 define void f (a,b,c) { ... }
 </code></pre>
         <p>
-        For more of a challenge
-        you could (efficiently) write the function
-        to compute the roots of a cubic a quartic polynomial.
+        For more of a challenge,
+        try to (efficiently) write the function
+        to compute the roots of a cubic or a quartic polynomial.
         </p>
     </li>
     <li>
-        What is the 10000th digit in the decimal expansion of \(\pi\)?
-    </li>
-    <li>
-        Write a function that takes a decimal number \(x\) as input
+        <h4>Digit Manipulation</h4> 
+        <p>
+        What is the 10000<sup>th</sup> digit in the decimal expansion of \(\pi\)?
+        </p>
+        <p>
+        More generally, write a function that takes a decimal number \(x\) as input
         and for some \(n \lt \)<code>scale</code> returns the \(n\)<sup>th</sup>
         digit to the right of the decimal place in \(x\,.\)
+        </p>
     </li>
     <li>
+        <h4>Decimal Digit as an Array</h4> 
         Given a decimal number \(x\) 
         create an array and write a loop that will 
         store the first \(n\) digits to the right of
         the decimal point in \(x\) in the indices in the array.
-    </li>
-    <li>
-        <h4>Prime Factorization</h4>
-        Write a function that prints the prime factorization
-        of its input.
     </li>
     <li>
         <h4>Newton’s Method</h4>
@@ -754,14 +780,20 @@ define void f (a,b,c) { ... }
         </p>
     </li>
     <li>
-        <h4>Numerical Derivative</h4>
+        <h4>Numerical Integration</h4>
         <p>
-        The last challenge requires you 
-        to explicitly define the derivative <code>ff</code>=\(f'\).
-        Can you write a function that, 
-        for a function \(f\) differentiable at \(x_0\)
-        returns the value of \(f'(x_0)\) accurate up to scale?
+        Write a function that, given a globally defined function <code>f</code>,
+        approximates the value of the definite integral
+        \[
+        \int\limits_a^b f(x)\,\mathrm{d}x\,.
+        \]
+        Can you write this function 
+        to accurately compute the value of the integral up to <code>scale</code>?
         </p>
+    </li>
+    <li>
+        <h4>Prime Factorization</h4>
+        Write a function that prints the prime factorization of its input.
     </li>
 </ol>
 </section>
@@ -772,8 +804,10 @@ define void f (a,b,c) { ... }
     See the <a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html">GNU bc manual</a> 
     to learn <em>all</em> of bc’s functionality.
     If you have a question and you can’t find the answer in the manual,
-    you can ask general questions about bc on <a href="https://unix.stackexchange.com/questions/tagged/bc?sort=newest">Unix &amp; Linux Stack Exchange</a>, 
-    or programming-related questions about bc on <a href="https://stackoverflow.com/questions/tagged/bc">Stack Overflow</a>. 
+    you can ask general questions about bc on the
+    <a href="https://unix.stackexchange.com/questions/tagged/bc?sort=newest">Unix &amp; Linux Stack Exchange</a>, 
+    or programming-related questions about bc on 
+    <a href="https://stackoverflow.com/questions/tagged/bc">Stack Overflow</a>. 
 </p>
 <p> 
     The maintainer of <code>phodd.net</code>
@@ -781,33 +815,27 @@ define void f (a,b,c) { ... }
     and written a helpful <a href="http://phodd.net/gnu-bc/bcfaq.html">bc FAQ page</a>.
     Additionally, Keith Matthews has 
     written <a href="http://www.numbertheory.org/gnubc/gnubc.html">some number theory programs for bc</a>.
-    So if you need a specific function you don’t want to write yourself, 
+    So if you need a specific algorithm you don’t want to implement yourself, 
     these are the first places you should check.
+</p> 
 <p> 
-    If you’re ever on Twitter having a argument 
+    And if you’re ever on Twitter having an argument 
     that could be settled with a computation, there is
-    <a href="https://twitter.com/bc_l">a Twitter bot that will execute bc code</a>.  
+    <a href="https://twitter.com/bc_l">a Twitter bot @bc_l that will execute bc code</a>.  
 </p>
 </section>
 
 <section>
 <h2 id="aux"> My File of Auxiliary Functions </h2>
 <p>
-If you’re not excited by the romantic notion 
+In case you’re not excited by the romantic notion
 of implementing mathematical functions yourself as you need them,
-here’s a healthy <em>functions.bc</em> file to get you started.
-Copy it freely, and
-<a href="https://github.com/mikepierce/Article-GNU-bc-Guide">suggest edits on GitHub</a>.
-</p>
-<p>
-The only novel function in this file 
-is <code>approximate(x,n)</code> which takes a decimal number \(x\) as input 
-and will either display the first \(n\) 
-<a href="https://en.wikipedia.org/wiki/Continued_fraction#Infinite_continued_fractions_and_convergents">convergents</a> of \(x\), 
-rational approximations to \(x\) obtained by truncating its continued fraction, 
-or will detect if \(x\) is rational up to the current scale. 
-This is useful for designing trigonometry exercises 
-with nearly integral solutions.
+here are two options:
+copy all of the <q>basic</q> functions below into your own 
+<em>functions.bc</em> auxiliary file 
+to give you a more usable base to start using bc from,
+or feel free to fork/clone my personal working file of
+<a href="https://github.com/mikepierce/GNU-bc-Functions">bc functions from GitHub</a>.
 </p>
 <pre><code class="language-python">
 ##################################################################
@@ -825,10 +853,9 @@ define int(x) {auto s; s=scale; scale=0; x/=1; scale=s; return x;}
 ##################################################################
 ### Logarithms & Exponentials
 
-define ln(x) { return l(x) }
-define log(x) { return l(x)/l(10) }
+define log(x) { return l(x) }
+define exp(x) { return e(x) }
 define logb(x,b) { return l(x)/l(b) }
-define lg(x) { return logb(x,2) }
 define pow(x,n) { return e(n*l(x)) }
 
 
@@ -872,64 +899,21 @@ define pythagtriple(m,n) {
 ### Combinatorics
 
 define factorial(n) {
-    if ( (n < 0) || (int(n) != n) ) {
-        print "Error: defined for positive integers only\n"
-        return
-    }
     return n*factorial(n-1)
 }
 
 # Return nCk, the number of ways to choose k of n objects
 define choose(n,k) {
-    if ( (n < 0) || (k < 0) || (int(n) != n) || (int(k) != k) ) {
-        print "Error: defined for positive integers only\n"
-        return
-    }
     return int(factorial(n)/(factorial(n-k)*factorial(k)))
 }
 
 # Return nPk, the number of ways to permute k of n objects
 define pick(n,k) {
     auto i, r
-    if ( (n < 0) || (k < 0) || (int(n) != n) || (int(k) != k) ) {
-        print "Error: defined for positive integers only\n"
-        return
-    }
     r = n-k
     for (i=1; n > r; --n)
         i*=n
     return i
-}
-
-define approximate(x,n) {
-    auto i,a,h,k,m
-    m = x
-    if (x == int(x))
-        print "The number is an integer\n"
-
-    h[0] = int(x)
-    k[0] = 1
-    h[1] = int(1/(x-int(x)))*int(x)+1
-    k[1] = int(1/(x-int(x)))
-
-    for(i=0; i<=n; ++i){
-        a[i] = int(x)
-        if (i >= 2) {
-            h[i] = a[i]*h[i-1]+h[i-2]
-            k[i] = a[i]*k[i-1]+k[i-2]
-        }
-        if (m == h[i]/k[i]) {
-            n = i
-            print "The number is exactly ", h[i], "/", k[i]
-            print " up to scale\n"
-            break
-        }
-        x=1/(x-a[i])
-        print h[i]/k[i], " = ", h[i], "/", k[i], "\n"
-    }
-    print m/1, " is the number\n"
-
-    return 1;
 }
 </code></pre>
 </section>
