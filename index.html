@@ -9,9 +9,9 @@
     <meta name="author" content="Mike Pierce">
     <meta name="description" content="A guide to using GNU bc written with mathematicians and instructors in mind">
 
-    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="all" href="../assets/main.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../assets/main.css">
     <link rel="stylesheet" href="../assets/highlight.min.css">
     <style>body{background-image:linear-gradient(transparent, var(--background)), url("banner.webp");}</style>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js" integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb" crossorigin="anonymous"></script>
@@ -28,7 +28,7 @@
 <ul>
     <li> <address><a href="..">Mike Pierce</a></address></li>
     <li> Last tended 4 January 2023 </li>
-    <li> Edit this article: <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">fork on GitHub</a></li>
+    <li> Contribute: <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">fork on GitHub</a></li>
 </ul>
 </header>
 
@@ -67,6 +67,7 @@ and also an accessible avenue for students to operate a computer as a calculator
     <li> <a href="#nix"> Installing bc on Linux or macOS</a></li>
     <li> <a href="#windows"> Installing bc on MS Windows</a></li>
     <li> <a href="#usage"> Getting Started Using bc</a> </li>
+    <li>
     <ul>
         <li> <a href="#var"> Using Variables</a></li>
         <li> <a href="#scale"> Controlling the Scale of bc’s Computations</a></li>
@@ -75,7 +76,9 @@ and also an accessible avenue for students to operate a computer as a calculator
         <li> <a href="#mathlib"> Extending bc with its Math Library</a></li>
         <!-- <li> <a href="#base"> Computations in Different Bases</a></li> -->
     </ul>
+    </li>
     <li> <a href="#programming"> Programming: Functions, Arrays, and Limitations </a></li>
+    <li>
     <ul>
         <li> <a href="#functions"> Defining Functions </a></li>
         <li> <a href="#print">  Printing Output &amp; Reading Input </a></li>
@@ -83,10 +86,12 @@ and also an accessible avenue for students to operate a computer as a calculator
         <li> <a href="#arrays"> Array Variables &amp; Loops </a></li>
         <li> <a href="#limits"> Limitations of bc </a></li>
     </ul>
+    </li>
     <!-- <li> <a href="#readline"> GNU Readline Keyboard Shortcuts </a></li> -->
     <li> <a href="#exercises"> Exercises &amp; Challenges</a></li>
     <li> <a href="#links"> Links &amp; References</a></li>
     <li> <a href="#aux"> My File of Auxiliary Functions</a></li>
+    <li> <a href="#fork"> Fork this Guide on GitHub</a></li>
 </ul>
 </nav>
 
@@ -222,6 +227,7 @@ contains the output of the previous command,
 allowing you to quickly feed calculation results into new calculations.
 Alternatively, a single period character <code>.</code> is a shorthand
 for <code>last</code>.
+</p>
 <pre><code class="language-python">
 a = 13846000729558555774154292420
 b = 63050430913919525940448
@@ -231,7 +237,6 @@ a^2 + b^2
 sqrt(.)
 # 13846000729702111914156643652.00000000000000000000
 </code></pre>
-</p>
 
 <h3 id="#scale"> Controlling the Scale of bc’s Computations</h3>
 <p>
@@ -313,7 +318,7 @@ depending on the algorithmic complexity of your calculation
 and magnitude of your parameters.
 Discovering exactly what \(n\) must be in a given case
 requires one dive into the world of
-<a title:"Wikipedia: Numerical Analysis" href="https://en.wikipedia.org/wiki/Numerical_analysis">numerical analysis</a>.
+<a title="Wikipedia: Numerical Analysis" href="https://en.wikipedia.org/wiki/Numerical_analysis">numerical analysis</a>.
 </p>
 
 <h3 id="pow">Handling Fractional Exponents</h3>
@@ -623,9 +628,11 @@ and its derivative named <code>ff</code>.
 You cannot explicitly define the contents of an entire array at once.
 I.e. the syntax <code>array = {8, 6, 7}</code> is not accepted,
 and instead you’d have to use:
+</p>
 <pre><code class="language-python">
 array[0] = 8; array[1] = 6; array[2] = 7; 
 </code></pre>
+<p>
 Similarly, since bc doesn't keep track of the size of an array,
 there is no command to print the entire contents of an array.
 Instead you must keep track of the size of an array yourself
@@ -849,7 +856,6 @@ define sgn(x) { if (x>0) return 1; return -1 }
 # Return the integer-part of a number (not the floor)
 define int(x) {auto s; s=scale; scale=0; x/=1; scale=s; return x;}
 
-
 ##################################################################
 ### Logarithms & Exponentials
 
@@ -857,7 +863,6 @@ define log(x) { return l(x) }
 define exp(x) { return e(x) }
 define logb(x,b) { return l(x)/l(b) }
 define pow(x,n) { return e(n*l(x)) }
-
 
 ##################################################################
 ### Trigonometry
@@ -894,7 +899,6 @@ define pythagtriple(m,n) {
     return m*m+n*n
 }
 
-
 ##################################################################
 ### Combinatorics
 
@@ -917,14 +921,41 @@ define pick(n,k) {
 }
 </code></pre>
 </section>
+
+<section>
+<h2 id="fork"> Fork this Guide on GitHub </h2>
+<p>
+    In keeping with the 
+    <a href="https://maggieappleton.com/garden-history" title="Maggie Appleton: A Brief History & Ethos of the Digital Garden">ethos of digital gardening</a>,
+    and of the internet being a living, community-tended library of humanity’s collective knowledge,
+    I don't want this page to become a corpse of my sole authorship 
+    cluttering the stacks of our library.
+    What a tragic abuse of the internet that would be.
+    No, I’d rather simply be the … maintainer? custodian? groundskeeper? … of this living guide.
+    Please feel free to become a co-author and tend to this page with me.
+</p>
+<p>
+    <h4>CONTRIBUTING</h4>
+    The <a href="https://web.dev/learn/html/semantic-html">semantic HTML</a> for this page is 
+    <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">hosted on GitHub</a>,
+    licensed as <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1">CC BY-NC-SA 4.0</a>.
+    If you’d like to suggest an edit or addition to my instance of this guide,
+    <a href="https://github.com/mikepierce/Article-GNU-bc-Guide/issues">create an issue on GitHub</a>, 
+    fork the repository, make your changes, and submit a pull request.
+    My only requirement of co-authors of this instance
+    is that you keep with the spirit of the page 
+    as a <em>quick-start guide</em> written with an audience of 
+    mathematicians, instructors, and students in mind—professional programmers 
+    and Unix administrators are already well-served by the GNU bc manual itself.
+</p>
+</section>
 </main>
 
 <footer>
 <ul>
     <li> © <a href="..">Mike Pierce</a> </li>
     <li> <a href="https://www.coloradomesa.edu/math-stat">CMU Math</a> </li>
-    <li> Article License <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1">CC BY-NC-SA 4.0</a> </li>
-    <li> Code License <a href="LICENSE">GPL3</a> </li>
+    <li> License <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1">CC BY-NC-SA 4.0</a> </li>
 </ul>
 <cite>
     Banner and thumb use <q><a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/46191841@N00/3676227162">Calculator</a></q> by <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/46191841@N00">Jorge Franganillo</a>, licensed under <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by/2.0/?ref=openverse">CC BY 2.0</a>
