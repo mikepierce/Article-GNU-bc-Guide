@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" media="all" href="../assets/main.css">
     <link rel="stylesheet" href="../assets/highlight.min.css">
     <style>body{background-image:linear-gradient(transparent, var(--background)), url("banner.webp");}</style>
+    <style>@media only print{h1 {font-size:2.5em;} h2 h3 {margin-top:0.33em;}}</style>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js" integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js" integrity="sha384-zDX/4RkDnpVxZkjJjxdzDsT1Kk2XThh7u47fXdgZ1W8AMjb//F4ZK4G4y7oNVHM1" crossorigin="anonymous"></script>
@@ -26,7 +27,7 @@
 <header>
 <h1> The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians</h1>
 <ul>
-    <li> <address><a href="..">Mike Pierce</a></address></li>
+    <li> <a href="..">Mike Pierce</a></li>
     <li> Last tended 4 January 2023 </li>
     <li> Contribute: <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">fork on GitHub</a></li>
 </ul>
@@ -61,11 +62,12 @@ and also an accessible avenue for students to operate a computer as a calculator
 </p>
 </section>
 
+<section>
 <nav>
 <h2 id="contents"> Contents </h2>
 <ul>
-    <li> <a href="#nix"> Installing bc on Linux or macOS</a></li>
-    <li> <a href="#windows"> Installing bc on MS Windows</a></li>
+    <li> <a href="#nix"> Installing on Linux/macOS</a></li>
+    <li> <a href="#windows"> Installing on MS Windows</a></li>
     <li> <a href="#usage"> Getting Started Using bc</a> </li>
     <li>
     <ul>
@@ -94,9 +96,10 @@ and also an accessible avenue for students to operate a computer as a calculator
     <li> <a href="#fork"> Fork this Guide on GitHub</a></li>
 </ul>
 </nav>
+</section>
 
 <section>
-<h2 id="nix"> Installing bc on Linux or macOS </h2>
+<h2 id="nix"> Installing on Linux/macOS </h2>
 <p>
 On macOS and most Linux operating systems bc will already be installed. 
 If not, you can install it using your package manager.
@@ -124,7 +127,7 @@ export BC_ENV_ARGS="-lq /PATH/TO/functions.bc"
 </section>
 
 <section>
-<h2 id="windows"> Installing bc on MS Windows </h2>
+<h2 id="windows"> Installing on MS Windows </h2>
 <p>
 Although bc was originally written for unix-based operating systems,
 it’s been 
@@ -293,20 +296,16 @@ using <code>l()</code> as the natural log function:
 <pre><code class="language-python">
 x=10^(-1); l(x+1)/x
 # .95310
-</code></pre>
-<pre><code class="language-python">
+
 x=10^(-2); l(x+1)/x
 # .99500
-</code></pre>
-<pre><code class="language-python">
+
 x=10^(-3); l(x+1)/x
 # .99000
-</code></pre>
-<pre><code class="language-python">
+
 x=10^(-4); l(x+1)/x
 # .90000
-</code></pre>
-<pre><code class="language-python">
+
 x=10^(-5); l(x+1)/x
 # 0
 </code></pre>
@@ -409,7 +408,7 @@ define degtorad (x) { return x*(a(1)/45) }
 </section>
 
 <section>
-<h3 id="programming"> Programming: Functions, Arrays, &amp; Limitations </h3>
+<h2 id="programming"> Programming: Functions, Arrays, &amp; Limitations </h2>
 <p>
 A quick note: this guide is specific to <strong>GNU</strong> bc—there are
 other implementations of bc with tighter standards and more/less features.
@@ -954,6 +953,7 @@ define pick(n,k) {
 <footer>
 <ul>
     <li> © <a href="..">Mike Pierce</a> </li>
+    <li> <address><a class="url "href="https://org.coloradomesa.edu/~mapierce2/bc">coloradomesa.edu/~mapierce2/bc</a></address></li>
     <li> <a href="https://www.coloradomesa.edu/math-stat">CMU Math</a> </li>
     <li> License <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1">CC BY-NC-SA 4.0</a> </li>
 </ul>
