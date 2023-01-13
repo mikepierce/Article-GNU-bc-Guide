@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="all" href="../assets/main.css">
     <link rel="stylesheet" href="../assets/highlight.min.css">
-    <style>body{background-image:linear-gradient(transparent, var(--background)), url("banner.webp");}</style>
     <style>@media only print{h1 {font-size:2.5em;} h2 h3 {margin-top:0.33em;}}</style>
+    <style>body{background-image:linear-gradient(transparent, var(--background)), url("banner.webp");}</style>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js" integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js" integrity="sha384-zDX/4RkDnpVxZkjJjxdzDsT1Kk2XThh7u47fXdgZ1W8AMjb//F4ZK4G4y7oNVHM1" crossorigin="anonymous"></script>
@@ -28,7 +28,7 @@
 <h1> The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians</h1>
 <ul>
     <li> <a href="..">Mike Pierce</a></li>
-    <li> Last tended 4 January 2023 </li>
+    <li> Last tended 13 January 2023 </li>
     <li> Contribute: <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">fork on GitHub</a></li>
 </ul>
 </header>
@@ -44,7 +44,7 @@ This tool is more robust than most OS’s default calculator app,
 much faster than a TI calculator,
 and more convenient to use than the computational sledgehammers
 Mathematica and Jupyter/python.
-And it’s only <q>basic</q> by default;
+And it’s only “basic” by default;
 bc is a full programming language too, 
 extendable with user-written functions.
 </p>
@@ -55,7 +55,7 @@ for mathematicians to attain
 that comes with wielding a computer to do arbitrarily precise computations.
 Pedagogically speaking, bc provides many benefits:
 a means to subvert the pervasiveness of 
-<a href="https://gen.medium.com/big-calculator-how-texas-instruments-monopolized-math-class-67ee165045dc" title="Big Calculator: How Texas Instruments Monopolized Math Class">proprietary hardware </a>,
+<a href="https://gen.medium.com/big-calculator-how-texas-instruments-monopolized-math-class-67ee165045dc" title="Big Calculator: How Texas Instruments Monopolized Math Class">proprietary hardware </a>
 and software in classrooms,
 an easy way to demonstrate the computational capabilities of a computer to students,
 and also an accessible avenue for students to operate a computer as a calculator for themselves.
@@ -68,26 +68,24 @@ and also an accessible avenue for students to operate a computer as a calculator
 <ul>
     <li> <a href="#nix"> Installing on Linux/macOS</a></li>
     <li> <a href="#windows"> Installing on MS Windows</a></li>
-    <li> <a href="#usage"> Getting Started Using bc</a> </li>
-    <li>
-    <ul>
-        <li> <a href="#var"> Using Variables</a></li>
-        <li> <a href="#scale"> Controlling the Scale of bc’s Computations</a></li>
-        <li> <a href="#pow"> Handling Fractional Exponents</a></li>
-        <li> <a href="#int"> Getting the Integer Part of a Number</a></li>
-        <li> <a href="#mathlib"> Extending bc with its Math Library</a></li>
-        <!-- <li> <a href="#base"> Computations in Different Bases</a></li> -->
-    </ul>
+    <li> <a href="#usage"> Getting Started Using bc</a>
+        <ul>
+            <li> <a href="#var"> Using Variables</a></li>
+            <li> <a href="#scale"> Controlling the Scale of bc’s Computations</a></li>
+            <li> <a href="#pow"> Handling Fractional Exponents</a></li>
+            <li> <a href="#int"> Getting the Integer Part of a Number</a></li>
+            <li> <a href="#mathlib"> Extending bc with its Math Library</a></li>
+            <!-- <li> <a href="#base"> Computations in Different Bases</a></li> -->
+        </ul>
     </li>
-    <li> <a href="#programming"> Programming: Functions, Arrays, &amp; Limitations </a></li>
-    <li>
-    <ul>
-        <li> <a href="#functions"> Defining Functions </a></li>
-        <li> <a href="#print">  Printing Output &amp; Reading Input </a></li>
-        <li> <a href="#control"> Control-Flow Syntax &amp; Arithmetic </a></li>
-        <li> <a href="#arrays"> Array Variables &amp; Loops </a></li>
-        <li> <a href="#limits"> Limitations of bc </a></li>
-    </ul>
+    <li> <a href="#programming"> Programming: Functions, Arrays, &amp; Limitations </a>
+        <ul>
+            <li> <a href="#functions"> Defining Functions </a></li>
+            <li> <a href="#print">  Printing Output &amp; Reading Input </a></li>
+            <li> <a href="#control"> Control-Flow Syntax &amp; Arithmetic </a></li>
+            <li> <a href="#arrays"> Array Variables &amp; Loops </a></li>
+            <li> <a href="#limits"> Limitations of bc </a></li>
+        </ul>
     </li>
     <!-- <li> <a href="#readline"> GNU Readline Keyboard Shortcuts </a></li> -->
     <li> <a href="#exercises"> Exercises &amp; Challenges</a></li>
@@ -136,7 +134,7 @@ If you have administrative privileges on your Windows machine
 just download the Setup files to install bc.
 If not—like if you’re using a classroom computer 
 locked down by your school’s IT department—you can 
-<q>portably</q> install bc.
+“portably” install bc.
 Download the <a href="http://gnuwin32.sourceforge.net/downlinks/bc-bin-zip.php">Binaries</a> 
 and the <a href="http://gnuwin32.sourceforge.net/downlinks/bc-dep-zip.php">Dependencies</a>
 zip archives from the GnuWin page.
@@ -159,7 +157,7 @@ and your auxiliary functions when you start bc,
 create a shortcut to <em>bc.exe</em> that includes the arguments 
 <code>-lq functions.bc</code> to bc in the <em>Target</em> of the shortcut file.
 You could name the shortcut file something distinctive like <em>bcmath</em>
-and start it quickly by searching <q>bcmath</q> under the Windows Start menu.
+and start it quickly by searching “bcmath” under the Windows Start menu.
 </p>
 <figure>
     <img src="img/shortcut.webp" alt="Screenshot: how to edit the Target field in Windows" title="This is what my shortcut target field looks like" >
@@ -311,7 +309,7 @@ x=10^(-5); l(x+1)/x
 </code></pre>
 <p>
 All you can say is that the difference 
-between your calculated value and the <q>true value</q>
+between your calculated value and the “true value”
 is less than \(10^{n-\text{scale}}\) for some \(n\),
 depending on the algorithmic complexity of your calculation
 and magnitude of your parameters.
@@ -351,7 +349,14 @@ You can calculate the integer part of a number
 by temporarily changing the scale though.
 </p>
 <pre><code class="language-c">
-define int(x) {auto s; s=scale; scale=0; x/=1; scale=s; return x;}
+define int(x) {
+    auto s; 
+    s=scale; 
+    scale=0; 
+    x/=1; 
+    scale=s; 
+    return x;
+}
 </code></pre>
 <p>
 This is also a helpful function to keep in your auxiliary functions file.
@@ -365,14 +370,14 @@ the only mathematical function built into bc is <code>sqrt()</code>.
 Loading bc’s math library with the <code>-l</code> option
 defines the following additional functions:
 </p>
-<pre><code class="language-txt">
-s(x)    The sine of x, x is in radians.
-c(x)    The cosine of x, x is in radians.
-a(x)    The arctangent of x, arctangent returns radians.
-l(x)    The natural logarithm of x.
-e(x)    The exponential function of raising e to the value x.
-j(n,x)  The bessel function of integer order n of x.
-</code></pre>
+<ul>
+    <li><code>s(x)</code>,    the sine of \(x\), for \(x\) in radians.</li>
+    <li><code>c(x)</code>,    the cosine of \(x\), for \(x\) in radians.</li>
+    <li><code>a(x)</code>,    the arctangent of \(x\), arctangent returns radians.</li>
+    <li><code>l(x)</code>,    the natural logarithm of \(x\).</li>
+    <li><code>e(x)</code>,    the exponential function of raising \(\mathrm{e}\) to the value \(x\).</li>
+    <li><code>j(n,x)</code>,  the bessel function of integer order \(n\) of \(x\).</li>
+</ul>
 <p>
 Only the trigonometric functions sine, cosine, and arctangent are included
 <a href="https://unix.stackexchange.com/q/652493/74616" title="'Who decided the bc math library will define sine cosine and arctangent?' on Unix.SE">for historical reasons</a>, 
@@ -493,7 +498,7 @@ All of the control-flow keywords
 <code>if</code>, <code>else</code>, <code>for</code>, <code>while</code>,
 <code>continue</code>, <code>break</code>, and <code>halt</code> 
 are supported in GNU bc. 
-Instead of the keywords <q>true</q> and <q>false</q> 
+Instead of the keywords “true” and “false”
 bc uses the numbers <code>1</code> and <code>0</code> respectively.
 To provide some illustrative examples of the use of these keywords:
 suppose you need a quick test to tell if two integers 
@@ -735,7 +740,7 @@ in case you’d like to compare solutions.
         Write a function that takes the coefficients
         of a quadratic  polynomial \(ax^2 + bx + c\) as input
         and prints the roots of that polynomial.
-        Since there are two <q>outputs</q> of this function
+        Since there are two “outputs” of this function
         you’ll likely want to <code>print</code> one of the roots 
         and return the other.
         Alternatively, using bc version ≥1.07.1 you could print both roots
@@ -837,35 +842,40 @@ define void f (a,b,c) { ... }
 In case you’re not excited by the romantic notion
 of implementing mathematical functions yourself as you need them,
 here are two options:
-copy all of the <q>basic</q> functions below into your own 
+copy any of the “basic” functions below into your own 
 <em>functions.bc</em> auxiliary file 
 to give you a more usable base to start using bc from,
 or feel free to fork/clone my personal working file of
 <a href="https://github.com/mikepierce/GNU-bc-Functions">bc functions from GitHub</a>.
 </p>
+<h3>Helpful Constants &amp; Functions</h3>
 <pre><code class="language-python">
-##################################################################
-### Helpful Constants and Functions
-
 pi=4*a(1)
 ex=e(1)
 define abs(x) { if (x>0) return x; return -x }
 define sgn(x) { if (x>0) return 1; return -1 }
 
 # Return the integer-part of a number (not the floor)
-define int(x) {auto s; s=scale; scale=0; x/=1; scale=s; return x;}
+define int(x) {
+    auto s; 
+    s=scale; 
+    scale=0; 
+    x/=1; 
+    scale=s; 
+    return x;
+}
+</code></pre>
 
-##################################################################
-### Logarithms & Exponentials
-
+<h3>Logarithms &amp; Exponentials</h3>
+<pre><code class="language-python">
 define log(x) { return l(x) }
 define exp(x) { return e(x) }
 define logb(x,b) { return l(x)/l(b) }
 define pow(x,n) { return e(n*l(x)) }
+</code></pre>
 
-##################################################################
-### Trigonometry
-
+<h3>Trigonometry</h3>
+<pre><code class="language-python">
 define radtodeg(x) { return x*(45/a(1)) }
 define degtorad(x) { return x*(a(1)/45) }
 
@@ -890,17 +900,18 @@ define arcsec(x) { return arccos(1/x) }
 define arccsc(x) { return arcsin(1/x) }
 define arccot(x) { return pi/2-a(x) }
 
-# Display the Pythagorean triple generated by integers m and n,
+# Display the Pythagorean triple 
+# generated by integers m and n,
 # and return the hypotenuse
 define pythagtriple(m,n) {
     print abs(n*n-m*m), "\n"
     print abs(2*m*n), "\n"
     return m*m+n*n
 }
+</code></pre>
 
-##################################################################
-### Combinatorics
-
+<h3>Combinatorics</h3>
+<pre><code class="language-python">
 define factorial(n) {
     return n*factorial(n-1)
 }
