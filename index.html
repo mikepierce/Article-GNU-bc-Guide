@@ -10,10 +10,11 @@
     <meta name="description" content="A guide to using GNU bc written with mathematicians and instructors in mind">
 
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Feed for Mike's Stuff" href="../rss.xml">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="all" href="../assets/main.css">
     <link rel="stylesheet" href="../assets/highlight.min.css">
-    <style>@media only print{h1 {font-size:2.5em;} h2 h3 {margin-top:0.33em;}}</style>
+    <style>@media only print {h1 {font-size:2.5em;}}</style>
     <style>body{background-image:linear-gradient(transparent, var(--background)), url("banner.webp");}</style>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js" integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -28,8 +29,9 @@
 <h1> The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians</h1>
 <ul>
     <li> <a href="..">Mike Pierce</a></li>
-    <li> Last tended 13 January 2023 </li>
+    <li> Last tended 14 Jan 2023 </li>
     <li> Contribute: <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">fork on GitHub</a></li>
+    <li class="print"> Hosted at <a class="url "href="https://org.coloradomesa.edu/~mapierce2/bc">coloradomesa.edu/~mapierce2/bc</a></li>
 </ul>
 </header>
 
@@ -219,7 +221,8 @@ but otherwise can be any combination
 of lowercase alphanumerical characters and underscores.
 So using <code>h2</code> instead of <code>hypotenuse_squared</code> above
 would’ve been just fine.
-Capital letters are reserved for computations in bases higher than ten,
+<strong>Caution</strong>: Capital letters are reserved 
+for computations in bases higher than ten,
 and so are not allowed in variable names.
 </p>
 <p>
@@ -507,9 +510,9 @@ might be adjacent Fibonacci numbers:
 </p>
 <pre><code class="language-c">
 if (int(10*(b/a)) == 16) {
-    print "a and b might be adjacent Fibonacci numbers\n"
+    print "a and b may be adjacent Fibonacci numbers\n"
 } else {
-    print "a and b cannot be adjacent Fibonacci numbers\n"
+    print "a and b aren't adjacent Fibonacci numbers\n"
 }
 </code></pre>
 <p>
@@ -648,7 +651,7 @@ and doing any sort of statistics impossible.
 On a related note, you can’t return an array from a function.
 Instead you have to pass your array by reference as a parameter,
 a feature of GNU bc not documented in the manual.
-The syntax for this in demonstrated in this example:
+The syntax is demonstrated in this example:
 </p>
 <pre><code class="language-c">
 define fibonacci_next (*array[], n) {
@@ -916,12 +919,14 @@ define factorial(n) {
     return n*factorial(n-1)
 }
 
-# Return nCk, the number of ways to choose k of n objects
+# nCk, the number of ways to choose k of n objects
 define choose(n,k) {
-    return int(factorial(n)/(factorial(n-k)*factorial(k)))
+    auto c
+    c = factorial(n)/(factorial(n-k)*factorial(k))
+    return int(c)
 }
 
-# Return nPk, the number of ways to permute k of n objects
+# nPk, the number of ways to permute k of n objects
 define pick(n,k) {
     auto i, r
     r = n-k
@@ -964,7 +969,6 @@ define pick(n,k) {
 <footer>
 <ul>
     <li> © <a href="..">Mike Pierce</a> </li>
-    <li> <address><a class="url "href="https://org.coloradomesa.edu/~mapierce2/bc">coloradomesa.edu/~mapierce2/bc</a></address></li>
     <li> <a href="https://www.coloradomesa.edu/math-stat">CMU Math</a> </li>
     <li> License <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1">CC BY-NC-SA 4.0</a> </li>
 </ul>
