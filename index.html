@@ -197,7 +197,7 @@ will be indicated with a <code>#</code>.
 </p>
 <pre><code class="language-python">
 3 + 4
-# 5
+# 7
 </code></pre>
 
 <h3 id="var">Using Variables</h3>
@@ -640,7 +640,7 @@ and instead you’d have to use:
 array[0] = 8; array[1] = 6; array[2] = 7; 
 </code></pre>
 <p>
-Similarly, since bc doesn't keep track of the size of an array,
+Similarly, since bc doesn’t keep track of the size of an array,
 there is no command to print the entire contents of an array.
 Instead you must keep track of the size of an array yourself
 and loop over the indices to individually print the entries.
@@ -780,7 +780,7 @@ define void f (a,b,c) { ... }
     <li>
         <h4>Newton’s Method</h4>
         <p>
-        For a differentiable function <code>f</code>=\(f\) with a zero
+        For a differentiable function <code>f</code>=\(f\) with a root
         and its derivative <code>ff</code>=\(f'\) 
         implement <a title="Wikipedia: Newton's Method" href="https://en.wikipedia.org/wiki/Newton's_method">Newton’s method</a> 
         of approximating a root of \(f\).
@@ -914,8 +914,14 @@ define pythagtriple(m,n) {
 </code></pre>
 
 <h3>Combinatorics</h3>
+<p>
+    Note these functions don’t bother to check
+    that their parameters are integers.
+</p>
 <pre><code class="language-python">
 define factorial(n) {
+    if (n<1)
+        return 1
     return n*factorial(n-1)
 }
 
@@ -943,7 +949,7 @@ define pick(n,k) {
     In keeping with the 
     <a href="https://maggieappleton.com/garden-history" title="Maggie Appleton: A Brief History & Ethos of the Digital Garden">ethos of digital gardening</a>,
     and of the internet being a living, community-tended library of humanity’s collective knowledge,
-    I don't want this page to become a corpse of my sole authorship 
+    I don’t want this page to become a corpse of my sole authorship 
     cluttering the stacks of our library.
     What a tragic abuse of the internet that would be.
     No, I’d rather simply be the … maintainer? custodian? groundskeeper? … of this living guide.
