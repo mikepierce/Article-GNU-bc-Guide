@@ -10,9 +10,9 @@
     <meta name="description" content="A guide to using GNU bc written with mathematicians and instructors in mind">
 
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
-    <link rel="alternate" type="application/rss+xml" title="Feed for Mike's Stuff" href="../rss.xml">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="all" href="../assets/main.css">
+    <link rel="alternate" href="../feed.xml" type="application/atom+xml" title="Mike Pierce's Feed">
     <link rel="stylesheet" href="../assets/highlight.min.css">
     <style>@media only print {h1 {font-size:2.5em;}}</style>
     <style>body{background-image:linear-gradient(transparent, var(--background)), url("banner.webp");}</style>
@@ -29,8 +29,9 @@
 <h1> The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians</h1>
 <ul>
     <li> <a href="..">Mike Pierce</a></li>
-    <li> Last tended 14 Jan 2023 </li>
-    <li> Contribute: <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">fork on GitHub</a></li>
+    <li> Tended 3 August 2023 </li>
+    <li class="screen"> <a href="GNU bc for Mathematicians _ Pierce.pdf">Print PDF</a></li>
+    <li class="screen"> Contribute: <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">Fork on GitHub</a></li>
     <li class="print"> Hosted at <a class="url "href="https://org.coloradomesa.edu/~mapierce2/bc">coloradomesa.edu/~mapierce2/bc</a></li>
 </ul>
 </header>
@@ -57,7 +58,7 @@ for mathematicians to attain
 that comes with wielding a computer to do arbitrarily precise computations.
 Pedagogically speaking, bc provides many benefits:
 a means to subvert the pervasiveness of 
-<a href="https://gen.medium.com/big-calculator-how-texas-instruments-monopolized-math-class-67ee165045dc" title="Big Calculator: How Texas Instruments Monopolized Math Class">proprietary hardware </a>
+<a href="https://gen.medium.com/big-calculator-how-texas-instruments-monopolized-math-class-67ee165045dc" title="Big Calculator: How Texas Instruments Monopolized Math Class">proprietary hardware</a>
 and software in classrooms,
 an easy way to demonstrate the computational capabilities of a computer to students,
 and also an accessible avenue for students to operate a computer as a calculator for themselves.
@@ -121,9 +122,9 @@ All of this can be done automatically when you start bc
 by setting the environment variable <code>BC_ENV_ARGS</code>,
 by including this line in your shell’s (bash, zsh, …) configuration file:
 </p>
-<pre><code class="language-bash">
-export BC_ENV_ARGS="-lq /PATH/TO/functions.bc"
-</code></pre>
+<pre>
+<code class="language-bash">export BC_ENV_ARGS="-lq /PATH/TO/functions.bc"</code>
+</pre>
 </section>
 
 <section>
@@ -190,28 +191,27 @@ either type the command <code>quit</code>
 or press <kbd>Ctrl</kbd>+<kbd>D</kbd>.
 </p>
 <p>
-Any text preceded by a <code>#</code> character is ignored by bc,
-which is used for leaving comments in code.
-In this guide the output of any bc code 
-will be indicated with a <code>#</code>.
+Input preceded by a <code>#</code> character is ignored by bc,
+which is intended to be used to leave comments in code.
 </p>
-<pre><code class="language-python">
-3 + 4
-# 7
-</code></pre>
+<pre>
+<code class="language-python"># Adding Three and Four
+3 + 4</code>
+<samp>7</samp>
+</pre>
 
 <h3 id="var">Using Variables</h3>
 <p>
 You can assign values to variables using <code>=</code>,
 which is helpful for longer computations.
 </p>
-<pre><code class="language-python">
-a = 13846000729558555774154292420
+<pre>
+<code class="language-python">a = 13846000729558555774154292420
 b = 63050430913919525940448
 hypotenuse_squared = a^2 + b^2
-sqrt(hypotenuse_squared)
-# 13846000729702111914156643652.00000000000000000000
-</code></pre>
+sqrt(hypotenuse_squared)</code>
+<samp>13846000729702111914156643652.00000000000000000000</samp>
+</pre>
 <p>
 Variables don’t have to be initialized like they do in most programming languages.
 GNU bc will just infer the data type of your variable:
@@ -232,15 +232,14 @@ allowing you to quickly feed calculation results into new calculations.
 Alternatively, a single period character <code>.</code> is a shorthand
 for <code>last</code>.
 </p>
-<pre><code class="language-python">
-a = 13846000729558555774154292420
+<pre><code class="language-python">a = 13846000729558555774154292420
 b = 63050430913919525940448
-a^2 + b^2
-# 191711736206911415591997907991571150760667877089711897104
+a^2 + b^2</code>
+<samp>191711736206911415591997907991571150760667877089711897104</samp>
 
-sqrt(.)
-# 13846000729702111914156643652.00000000000000000000
-</code></pre>
+<code class="language-python">sqrt(.)</code>
+<samp>13846000729702111914156643652.00000000000000000000</samp>
+</pre>
 
 <h3 id="#scale"> Controlling the Scale of bc’s Computations</h3>
 <p>
@@ -256,60 +255,60 @@ Loading the <a href="#mathlib">math library</a>
 sets <code>scale</code> to 20, 
 but you can manually change this to whatever suits your needs:
 </p>
-<pre><code class="language-python">
-sqrt(2)
-# 1.41421356237309504880
+<pre>
+<code class="language-python">sqrt(2)</code>
+<samp>1.41421356237309504880</samp>
 
-scale = 42
-sqrt(2)
-# 1.414213562373095048801688724209698078569671
-</code></pre>
+<code class="language-python">scale = 42
+sqrt(2)</code>
+<samp>1.414213562373095048801688724209698078569671</samp>
+</pre>
 <p>
 Conversely, there is a function <code>length()</code> 
 that returns the number of an input’s significant digits,
 and a function <code>scale()</code>
 that returns the number of significant digits to the right of the radix point.
 </p>
-<pre><code class="language-python">
-gelfond = 23.1406926
-length(gelfond)
-# 9
+<pre>
+<code class="language-python">gelfond = 23.1406926
+length(gelfond)</code>
+<samp>9</samp>
 
-scale(gelfond)
-# 7
-</code></pre>
+<code>scale(gelfond)</code>
+<samp>7</samp>
+</pre>
 <p>
 <strong>Caution</strong>: the value of <code>scale</code> is <em>not</em>
 the number of decimal places you may assume to be accurate.
 Rounding error can accumulate:
 </p>
-<pre><code class="language-python">
-scale=2
-9*(1/9)
-# .99
-</code></pre>
+<pre>
+<code class="language-python">scale=2
+9*(1/9)</code>
+<samp>.99</samp> 
+</pre>
 <p>
 For a more stark example, see how bc could lead us astray from the fact that
 \(\lim_{x \to 0} \frac{\ln(x+1)}{x} = 1\).
 Setting <code> scale=5 </code> and 
 using <code>l()</code> as the natural log function:
 </p>
-<pre><code class="language-python">
-x=10^(-1); l(x+1)/x
-# .95310
+<pre>
+<code class="language-python">x=10^(-1); l(x+1)/x</code>
+<samp>.95310</samp>
 
-x=10^(-2); l(x+1)/x
-# .99500
+<code class="language-python">x=10^(-2); l(x+1)/x</code>
+<samp>.99500</samp>
 
-x=10^(-3); l(x+1)/x
-# .99000
+<code class="language-python">x=10^(-3); l(x+1)/x</code>
+<samp>.99000</samp>
 
-x=10^(-4); l(x+1)/x
-# .90000
+<code class="language-python">x=10^(-4); l(x+1)/x</code>
+<samp>.90000</samp>
 
-x=10^(-5); l(x+1)/x
-# 0
-</code></pre>
+<code class="language-python">x=10^(-5); l(x+1)/x</code>
+<samp>0</samp>
+</pre>
 <p>
 All you can say is that the difference 
 between your calculated value and the “true value”
@@ -334,9 +333,9 @@ which do accept fractional parameters.
 Here’s a <code>pow</code> function that evaluates \(b^x\)
 for an arbitrary base <code>b</code> and exponent <code>x</code>.
 </p>
-<pre><code class="language-c">
-define pow (b,x) { return e(x*l(b)) }
-</code></pre>
+<pre>
+<code class="language-c">define pow (b,x) { return e(x*l(b)) }</code>
+</pre>
 <p>
 Then you can compute \(2.71^{3.14}\) as <code>pow(2.71, 3.14)</code>.
 That’s a good function to keep in your auxiliary <em>functions.bc</em> file.
@@ -351,16 +350,16 @@ so it doesn’t store the integer part of a number for easy access.
 You can calculate the integer part of a number
 by temporarily changing the scale though.
 </p>
-<pre><code class="language-c">
-define int(x) {
+<pre>
+<code class="language-c">define int(x) {
     auto s; 
     s=scale; 
     scale=0; 
     x/=1; 
     scale=s; 
     return x;
-}
-</code></pre>
+}</code>
+</pre>
 <p>
 This is also a helpful function to keep in your auxiliary functions file.
 </p>
@@ -374,12 +373,12 @@ Loading bc’s math library with the <code>-l</code> option
 defines the following additional functions:
 </p>
 <ul>
-    <li><code>s(x)</code>,    the sine of \(x\), for \(x\) in radians.</li>
-    <li><code>c(x)</code>,    the cosine of \(x\), for \(x\) in radians.</li>
-    <li><code>a(x)</code>,    the arctangent of \(x\), arctangent returns radians.</li>
-    <li><code>l(x)</code>,    the natural logarithm of \(x\).</li>
-    <li><code>e(x)</code>,    the exponential function of raising \(\mathrm{e}\) to the value \(x\).</li>
-    <li><code>j(n,x)</code>,  the bessel function of integer order \(n\) of \(x\).</li>
+    <li><code>s(x)</code>, the sine of \(x\), for \(x\) in radians.</li>
+    <li><code>c(x)</code>, the cosine of \(x\), for \(x\) in radians.</li>
+    <li><code>a(x)</code>, the arctangent of \(x\), arctangent returns radians.</li>
+    <li><code>l(x)</code>, the natural logarithm of \(x\).</li>
+    <li><code>e(x)</code>, the exponential function of raising \(\mathrm{e}\) to the value \(x\).</li>
+    <li><code>j(n,x)</code>, the bessel function of integer order \(n\) of \(x\).</li>
 </ul>
 <p>
 Only the trigonometric functions sine, cosine, and arctangent are included
@@ -399,12 +398,11 @@ Define \(\pi\) as four times the arctangent of one,
 You could keep this line in your auxiliary <em>functions.bc</em> file,
 along with these functions to convert between degree and radian measure:
 </p>
-<pre><code class="language-c">
-define radtodeg (x) { return x*(45/a(1)) }
-</code></pre>
-<pre><code class="language-c">
-define degtorad (x) { return x*(a(1)/45) }
-</code></pre>
+<pre>
+<code class="language-c">define radtodeg (x) { return x*(45/a(1)) }</code>
+
+<code class="language-c">define degtorad (x) { return x*(a(1)/45) }</code>
+</pre>
 
 <!--
 <h3 id="base">Computations in Different Bases</h3>
@@ -436,13 +434,13 @@ this section will help you translate that experience over to bc.
 <p>
 The syntax for declaring a function in bc is
 </p>
-<pre><code class="language-c">
-define NAME ( PARAMETERS ) { 
+<pre>
+<code class="language-c">define NAME ( PARAMETERS ) { 
     auto AUTO_LIST
     ...
     return OUTPUT
-}
-</code></pre>
+}</code>
+</pre>
 <p>
 where <code>NAME</code> is the name of your function,
 <code>PARAMETERS</code> is the list of inputs to your function,
@@ -457,15 +455,15 @@ For example, here’s a function that returns the \(n\)<sup>th</sup> Fibonacci n
 using the classic 
 <a href="https://en.wikipedia.org/wiki/Recursion_(computer_science)" title="Wikipedia: Recursion (computer science)">recursive</a> definition.
 </p>
-<pre><code class="language-c">
-define fibonacci (n) { 
+<pre>
+<code class="language-c">define fibonacci (n) { 
     auto i
     if (n==1 || n==2) {
         return 1
     }
     return fibonacci(n-1) + fibonacci(n-2)
-}
-</code></pre>
+}</code>
+</pre>
 
 <h3 id="print"> Printing Output &amp; Reading Input</h3>
 <p>
@@ -480,20 +478,19 @@ while the command <code>x = read()</code> will store
 a number entered interactively by a user to the variable <code>x</code>.
 For example:
 </p>
-<pre><code class="language-c">
-define fibonacci_ask () { 
+<pre>
+<code class="language-c">define fibonacci_ask () { 
     auto r
     print "Which Fibonacci number would you like?\n"
     r = read()
     return fibonacci(r)
-}
-</code></pre>
+}</code>
+</pre>
 <p>
 That <code>\n</code> character prints a newline
 to the terminal; otherwise bc would prompt 
 for input on that same line it printed the question.
 </p>
-
 
 <h3 id="control"> Control-Flow Syntax &amp; Arithmetic</h3>
 <p>
@@ -508,36 +505,36 @@ suppose you need a quick test to tell if two integers
 <code>a</code> and <code>b</code> such that \(2 \lt a \lt b \)
 might be adjacent Fibonacci numbers:
 </p>
-<pre><code class="language-c">
-if (int(10*(b/a)) == 16) {
+<pre>
+<code class="language-c">if (int(10*(b/a)) == 16) {
     print "a and b may be adjacent Fibonacci numbers\n"
 } else {
     print "a and b aren't adjacent Fibonacci numbers\n"
-}
-</code></pre>
+}</code>
+</pre>
 <p>
 Or suppose you want to nicely display the first 42
 Fibonacci numbers along with their index:
 </p>
-<pre><code class="language-c">
-for (i=1; i<=42; ++i) {
+<pre>
+<code class="language-c">for (i=1; i<=42; ++i) {
     print i, " | ", fibonacci(i), "\n"
-}
-</code></pre>
+}</code>
+</pre>
 <p>
 Or suppose you want to find the smallest power of 2
 that has a leading digit of 7:
 </p>
-<pre><code class="language-c">
-x = 1
+<pre>
+<code class="language-c">x = 1
 while(1) {
     if (int(x/10^(length(x)-1)) == 7) {
         break
     }
     x*=2
 }
-print x
-</code></pre>
+print x</code>
+</pre>
 <p>
 With the exception of C’s bitwise operations 
 and two other special cases, bc shares all of C’s 
@@ -578,13 +575,13 @@ is indicated by enclosing it in square brackets
 That is, the variable \(a_i\) for some \(i\in \mathbf{Z}^+\) is denoted as
 <code>a[i]</code> in bc.
 </p>
-<pre><code class="language-python">
-a[1] = 13846000729558555774154292420
+<pre>
+<code class="language-python">a[1] = 13846000729558555774154292420
 a[2] = 63050430913919525940448
 h2 = a[1]^2 + a[2]^2
-sqrt(h2)
-# 13846000729702111914156643652.00000000000000000000
-</code></pre>
+sqrt(h2)</code>
+<samp>13846000729702111914156643652.00000000000000000000<samp>
+</pre>
 <p>
 Simple variables and array variables of the same name 
 can co-exist with no conflict: 
@@ -603,16 +600,16 @@ For example, we can write a more efficient <code>fibonacci()</code> function
 by using a for-loop and storing previously computed Fibonacci numbers 
 in an array <code>fib</code>:
 </p>
-<pre><code class="language-c">
-define fibonacci (n) { 
+<pre>
+<code class="language-c">define fibonacci (n) { 
     auto i, fib
     fib[1] = fib[2] = 1
     for (i=2; i<=n; ++i) {
         fib[i] = fib[i-1] + fib[i-2]
     }
     return fib[n]
-}
-</code></pre>
+}</code>
+</pre>
 
 <h3 id="limits">Limitation of bc </h3>
 <p>
@@ -622,7 +619,7 @@ when considering if you’d like to use a more robust programming language.
 <p>
 In bc you cannot pass functions as parameters to other functions.
 The only variable types—and so the only entities
-that may be functions parameters—are simple variables and arrays.
+that may be a function’s parameters—are simple variables and arrays.
 This limitation makes for messy code,
 where any function that morally <em>should</em> have a function
 as a parameter instead has to assume a globally-defined function
@@ -636,9 +633,9 @@ You cannot explicitly define the contents of an entire array at once.
 I.e. the syntax <code>array = {8, 6, 7}</code> is not accepted,
 and instead you’d have to use:
 </p>
-<pre><code class="language-python">
-array[0] = 8; array[1] = 6; array[2] = 7; 
-</code></pre>
+<pre>
+<code class="language-python">array[0] = 8; array[1] = 6; array[2] = 7;</code>
+</pre>
 <p>
 Similarly, since bc doesn’t keep track of the size of an array,
 there is no command to print the entire contents of an array.
@@ -653,21 +650,22 @@ Instead you have to pass your array by reference as a parameter,
 a feature of GNU bc not documented in the manual.
 The syntax is demonstrated in this example:
 </p>
-<pre><code class="language-c">
-define fibonacci_next (*array[], n) {
+<pre>
+<code class="language-c">define fibonacci_next (*array[], n) {
     array[n] = array[n-1] + array[n-2]
     return array[n]
-}
-</code></pre>
-<pre><code class="language-python">
-fib[42] = 267914296
+}</code>
+</pre>
+<pre>
+<code class="language-python">fib[42] = 267914296
 fib[43] = 433494437
-fibonacci_next(fib[], 44)
-# 701408733
+fibonacci_next(fib[], 44)</code>
+<samp>701408733</samp>
 
-fib[44]
-# 701408733
-</code></pre>
+<code class="language-python">fib[42] = 267914296
+fib[44]</code>
+<samp>701408733</samp>
+</pre>
 <p>
 Additionally there is not built-in support for matrices 
 (arrays-of-arrays, 2D arrays).
@@ -750,9 +748,9 @@ in case you’d like to compare solutions.
         and have your function return nothing
         using the <code>void</code> keyword:
         </p>
-<pre><code class="language-c">
-define void f (a,b,c) { ... }
-</code></pre>
+<pre>
+<code class="language-c">define void f (a,b,c) { ... }</code>
+</pre>
         <p>
         For more of a challenge,
         try to (efficiently) write the function
@@ -852,8 +850,8 @@ or feel free to fork/clone my personal working file of
 <a href="https://github.com/mikepierce/GNU-bc-Functions">bc functions from GitHub</a>.
 </p>
 <h3>Helpful Constants &amp; Functions</h3>
-<pre><code class="language-python">
-pi=4*a(1)
+<pre>
+<code class="language-python">pi=4*a(1)
 ex=e(1)
 define abs(x) { if (x>0) return x; return -x }
 define sgn(x) { if (x>0) return 1; return -1 }
@@ -866,20 +864,20 @@ define int(x) {
     x/=1; 
     scale=s; 
     return x;
-}
-</code></pre>
+}</code>
+</pre>
 
 <h3>Logarithms &amp; Exponentials</h3>
-<pre><code class="language-python">
-define log(x) { return l(x) }
+<pre>
+<code class="language-python">define log(x) { return l(x) }
 define exp(x) { return e(x) }
 define logb(x,b) { return l(x)/l(b) }
-define pow(x,n) { return e(n*l(x)) }
-</code></pre>
+define pow(x,n) { return e(n*l(x)) }</code>
+</pre>
 
 <h3>Trigonometry</h3>
-<pre><code class="language-python">
-define radtodeg(x) { return x*(45/a(1)) }
+<pre>
+<code class="language-python">define radtodeg(x) { return x*(45/a(1)) }
 define degtorad(x) { return x*(a(1)/45) }
 
 define cos(x) { return c(x) }
@@ -910,16 +908,16 @@ define pythagtriple(m,n) {
     print abs(n*n-m*m), "\n"
     print abs(2*m*n), "\n"
     return m*m+n*n
-}
-</code></pre>
+}</code>
+</pre>
 
 <h3>Combinatorics</h3>
 <p>
     Note these functions don’t bother to check
     that their parameters are integers.
 </p>
-<pre><code class="language-python">
-define factorial(n) {
+<pre>
+<code class="language-python">define factorial(n) {
     if (n<1)
         return 1
     return n*factorial(n-1)
@@ -939,8 +937,8 @@ define pick(n,k) {
     for (i=1; n > r; --n)
         i*=n
     return i
-}
-</code></pre>
+}</code>
+</pre>
 </section>
 
 <section>
