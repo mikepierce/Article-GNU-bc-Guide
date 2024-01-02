@@ -27,8 +27,7 @@
 <h1>The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians</h1>
 <ul>
     <li> <a href="..">Mike Pierce</a></li>
-    <li> Tended 8 August 2023 </li>
-    <li class="screen"> <a href="GNU bc for Mathematicians _ Pierce.pdf">Print PDF</a></li>
+    <li> Tended 2 January 2024 </li>
     <li class="screen"> Contribute: <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">Fork on GitHub</a></li>
     <li class="print"> Hosted at <a class="url "href="https://org.coloradomesa.edu/~mapierce2/bc">coloradomesa.edu/~mapierce2/bc</a></li>
 </ul>
@@ -76,7 +75,7 @@ and also an accessible avenue for students to operate a computer as a calculator
             <li> <a href="#pow"> Handling Fractional Exponents</a></li>
             <li> <a href="#int"> Getting the Integer Part of a Number</a></li>
             <li> <a href="#mathlib"> Extending bc with its Math Library</a></li>
-            <!-- <li> <a href="#base"> Computations in Different Bases</a></li> -->
+            <li> <a href="#bases"> Computations in Different Bases</a></li>
         </ul>
     </li>
     <li> <a href="#programming"> Programming: Functions, Arrays, &amp; Limitations </a>
@@ -406,13 +405,48 @@ along with these functions to convert between degree and radian measure:
 <code class="language-c">define degtorad (x) { return x*(a(1)/45) }</code>
 </pre>
 
-<!--
-<h3 id="base">Computations in Different Bases</h3>
+<h3 id="bases">Computations in Different Bases</h3>
 <p>
-    <a href="https://unix.stackexchange.com/q/199615/74616">don’t use capitals</a>,
-    ibase and obase
+    Another shining feature of GNU bc — 
+    one most useful to programmers,
+    but would be remiss not to mention — 
+    is its capability to do computations in 
+    <a href="https://en.wikipedia.org/wiki/Positional_notation#Base_of_the_numeral_system">bases</a> 2 through 36.
+    The twenty-six capital letters of the alphabet 
+    are used to represent digits beyond 9 as input; 
+    this is why it’s 
+    <a href="https://unix.stackexchange.com/q/199615/74616">forbidden to use capital characters in variable names</a>.
+    By default, user input and displayed output 
+    are supposed by bc to be in base-ten (decimal).
+    You can tell bc to display output in different base
+    by changing the variable <code>obase</code>,
+    and you can tell bc to expect user input in a different base
+    by changing the variable <code>ibase</code>.
+    For example:
 </p>
--->
+<pre>
+<code class="language-c">obase = 17
+8675309</code>
+<samp> 06 01 14 13 06 05</samp>
+
+<code class="language-c">obase = 2
+8675309</code>
+<samp>100001000101111111101101</samp>
+
+<code class="language-c">obase = 10
+ibase = 17
+61ED65</code>
+<samp>8675309</samp>
+</pre>
+<p>
+<strong>Caution</strong>:
+If you change the value of <code>ibase</code> <em>before</em>
+changing the value of <code>obase</code>,
+remember that the value you assign to <code>obase</code>
+will be interpreted in the base 
+you assigned to <code>ibase</code>.
+Maybe just get in the habit of changing <code>obase</code> first.
+</p>
 </section>
 
 <section>
@@ -760,22 +794,24 @@ in case you’d like to compare solutions.
         </p>
     </li>
     <li>
-        <h4>Digit Manipulation</h4> 
+        <h4>Decimal Digit as an Array</h4> 
         <p>
-        What is the 10000<sup>th</sup> digit in the decimal expansion of \(\pi\)?
+        Given a decimal number \(x\) 
+        create an array and write a loop that will 
+        store the first \(n\) digits to the right of
+        the decimal point in \(x\) in the indices in the array.
         </p>
         <p>
-        More generally, write a function that takes a decimal number \(x\) as input
+        More generally, write a function that takes 
+        a decimal number \(x\) as input
         and for some \(n \lt \)<code>scale</code> returns the \(n\)<sup>th</sup>
         digit to the right of the decimal place in \(x\,.\)
         </p>
     </li>
     <li>
-        <h4>Decimal Digit as an Array</h4> 
-        Given a decimal number \(x\) 
-        create an array and write a loop that will 
-        store the first \(n\) digits to the right of
-        the decimal point in \(x\) in the indices in the array.
+        <h4>Prime Factorization</h4>
+        Write a function that prints 
+        the prime factorization of its input.
     </li>
     <li>
         <h4>Newton’s Method</h4>
@@ -804,10 +840,6 @@ in case you’d like to compare solutions.
         Can you write this function 
         to accurately compute the value of the integral up to <code>scale</code>?
         </p>
-    </li>
-    <li>
-        <h4>Prime Factorization</h4>
-        Write a function that prints the prime factorization of its input.
     </li>
 </ol>
 </section>
@@ -848,7 +880,7 @@ here are two options:
 copy any of the “basic” functions below into your own 
 <em>functions.bc</em> auxiliary file 
 to give you a more usable base to start using bc from,
-or feel free to fork/clone my personal working file of
+or feel free to fork/clone my personal working file(s) of
 <a href="https://github.com/mikepierce/GNU-bc-Functions">bc functions from GitHub</a>.
 </p>
 <h3>Helpful Constants &amp; Functions</h3>
@@ -860,12 +892,7 @@ define sgn(x) { if (x>0) return 1; return -1 }
 
 # Return the integer-part of a number (not the floor)
 define int(x) {
-    auto s; 
-    s=scale; 
-    scale=0; 
-    x/=1; 
-    scale=s; 
-    return x;
+    auto s; s=scale; scale=0; x/=1; scale=s; return x;
 }</code>
 </pre>
 
