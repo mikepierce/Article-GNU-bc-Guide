@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" media="all" href="../assets/main.css">
     <link rel="alternate" href="../feed.xml" type="application/atom+xml" title="Mike Pierce's Feed">
     <link rel="stylesheet" href="../assets/highlight.min.css">
-    <style>@media only print {h1 {font-size:2.5em;}}</style>
+    <style>@media only print {h1 {font-size:2.5em;} body {line-height:calc(11em/9);} figure {width:83%;}}</style>
     <style>body{background-image:linear-gradient(transparent, var(--background)), url("banner.webp");}</style>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js" integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -27,7 +27,8 @@
 <h1>The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians</h1>
 <ul>
     <li> <a href="..">Mike Pierce</a></li>
-    <li> Tended 2 January 2024 </li>
+    <li> Tended 4 January 2024 </li>
+    <li class="screen"> <a href="GNU Basic Calculator (bc) for Mathematicians _ Mike Pierce.pdf">Print PDF</a></li>
     <li class="screen"> Contribute: <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">Fork on GitHub</a></li>
     <li class="print"> Hosted at <a class="url "href="https://org.coloradomesa.edu/~mapierce2/bc">coloradomesa.edu/~mapierce2/bc</a></li>
 </ul>
@@ -102,10 +103,10 @@ and also an accessible avenue for students to operate a computer as a calculator
 On macOS and most Linux operating systems bc will already be installed. 
 If not, you can install it using your package manager.
 For example on a Debian-based OS like Ubuntu 
-run the command <code>sudo apt install bc</code>.
+run <code>sudo apt install bc</code>.
 Similarly on macOS you can install bc via 
-the <a href="https://brew.sh">homebrew</a> package manager
-with the command <code>brew install bc</code>.
+the <a href="https://brew.sh">homebrew</a>
+with <code>brew install bc</code>.
 </p>
 <p>
 Running the command <code>bc</code> in your terminal 
@@ -132,8 +133,8 @@ it’s been
 <a href="http://gnuwin32.sourceforge.net/packages/bc.htm" title="Bc for Windows via GnuWin">ported to windows via GnuWin</a>.
 If you have administrative privileges on your Windows machine
 just download the Setup files to install bc.
-If not—like if you’re using a classroom computer 
-locked down by your school’s IT department—you can 
+If not — like if you’re using a classroom computer 
+locked down by your school’s IT department — you can 
 “portably” install bc.
 Download the <a href="http://gnuwin32.sourceforge.net/downlinks/bc-bin-zip.php">Binaries</a> 
 and the <a href="http://gnuwin32.sourceforge.net/downlinks/bc-dep-zip.php">Dependencies</a>
@@ -146,7 +147,7 @@ You’ll want to keep an auxiliary file of functions you write,
 </p>
 <figure>
     <div>
-    <img src="img/files.webp" alt="Screenshot: a directory containing the specified files in Windows" title="This is what my folder containing bc looks like">
+    <img width=648 src="img/files.webp" alt="Screenshot: a directory containing the specified files in Windows" title="This is what my folder containing bc looks like">
     <figcaption>
         Screenshot: a directory containing the specified files in Windows
     </figcaption>
@@ -158,12 +159,12 @@ and automatically load the <a href="#mathlib">math library</a>
 and your auxiliary functions when you start bc, 
 create a shortcut to <em>bc.exe</em> that includes the arguments 
 <code>-lq functions.bc</code> to bc in the <em>Target</em> of the shortcut file.
-You could name the shortcut file something distinctive like <em>bcmath</em>
+You could name the shortcut file something like <em>bcmath</em>
 and start it quickly by searching “bcmath” under the Windows Start menu.
 </p>
 <figure>
     <div>
-    <img src="img/shortcut.webp" alt="Screenshot: how to edit the Target field in Windows" title="This is what my shortcut target field looks like" >
+    <img width=432 src="img/shortcut.webp" alt="Screenshot: how to edit the Target field in Windows" title="This is what my shortcut target field looks like" >
     <figcaption>
         Screenshot: how to edit the <em>Target</em> field in Windows
     </figcaption>
@@ -223,8 +224,7 @@ of lowercase alphanumerical characters and underscores.
 So using <code>h2</code> instead of <code>hypotenuse_squared</code> above
 would’ve been just fine.
 <strong>Caution</strong>: Capital letters are reserved 
-for computations in bases higher than ten,
-and so are not allowed in variable names.
+for expressing numbers in bases higher than ten.
 </p>
 <p>
 The special variable <code>last</code> 
@@ -250,7 +250,7 @@ setting the number of digits
 to the right of the <a href="https://en.wikipedia.org/wiki/Decimal_separator#Radix_point" title="Wikipedia: Radix Point">radix point</a> 
 (decimal point in base ten)
 that bc will store during computations.
-This simple control over the precision of real-number calculations
+This simple control over the precision of calculations
 is the shining feature of bc.
 Loading the <a href="#mathlib">math library</a> 
 sets <code>scale</code> to 20, 
@@ -289,7 +289,7 @@ Rounding error can accumulate:
 <samp>.99</samp> 
 </pre>
 <p>
-For a more stark example, see how bc could lead us astray from the fact that
+For a stark example, see how bc could lead us astray from the fact that
 \(\lim_{x \to 0} \frac{\ln(x+1)}{x} = 1\).
 Setting <code> scale=5 </code> and 
 using <code>l()</code> as the natural log function:
@@ -386,8 +386,8 @@ Only the trigonometric functions sine, cosine, and arctangent are included
 <a href="https://unix.stackexchange.com/q/652493/74616" title="'Who decided the bc math library will define sine cosine and arctangent?' on Unix.SE">for historical reasons</a>, 
 but really that’s all you need:
 all other trigonometric functions can be expressed in terms of these three.
-Doing this is left to the user as an exercise,
-… or you can find 
+Doing this is left to the reader as an exercise,
+… or see 
 <a href="#aux">my implementations at the end of this guide</a>.
 </p>
 <p>
@@ -452,8 +452,8 @@ Maybe just get in the habit of changing <code>obase</code> first.
 <section>
 <h2 id="programming"> Programming: Functions, Arrays, &amp; Limitations </h2>
 <p>
-A quick note: this guide is specific to <strong>GNU</strong> bc—there are
-other implementations of bc with tighter standards and more/less features.
+A quick note: this guide is specific to <strong>GNU</strong> bc —
+there are other implementations of bc with tighter standards and more/less features.
 But GNU bc is the version you’d most likely encounter in the wild.
 </p>
 <p>
@@ -558,7 +558,7 @@ Fibonacci numbers along with their index:
 }</code>
 </pre>
 <p>
-Or suppose you want to find the smallest power of 2
+Or suppose you want the smallest power of 2
 that has a leading digit of 7:
 </p>
 <pre>
@@ -654,8 +654,9 @@ when considering if you’d like to use a more robust programming language.
 </p>
 <p>
 In bc you cannot pass functions as parameters to other functions.
-The only variable types—and so the only entities
-that may be a function’s parameters—are simple variables and arrays.
+The only variable types — 
+and so the only entities that may be a function’s parameters — 
+are simple variables and arrays.
 This limitation makes for messy code,
 where any function that morally <em>should</em> have a function
 as a parameter instead has to assume a globally-defined function
@@ -703,8 +704,8 @@ fib[44]</code>
 <samp>701408733</samp>
 </pre>
 <p>
-Additionally there is not built-in support for matrices 
-(arrays-of-arrays, 2D arrays).
+Additionally there is no built-in support for matrices 
+(arrays-of-arrays).
 </p>
 </section>
 
@@ -780,6 +781,8 @@ in case you’d like to compare solutions.
         Since there are two “outputs” of this function
         you’ll likely want to <code>print</code> one of the roots 
         and return the other.
+        </p>
+        <p>
         Alternatively, using bc version ≥1.07.1 you could print both roots
         and have your function return nothing
         using the <code>void</code> keyword:
@@ -816,7 +819,7 @@ in case you’d like to compare solutions.
     <li>
         <h4>Newton’s Method</h4>
         <p>
-        For a differentiable function <code>f</code>=\(f\) with a root
+        For a differentiable function <code>f</code>=\(f\) 
         and its derivative <code>ff</code>=\(f'\) 
         implement <a title="Wikipedia: Newton's Method" href="https://en.wikipedia.org/wiki/Newton's_method">Newton’s method</a> 
         of approximating a root of \(f\).
@@ -880,9 +883,15 @@ here are two options:
 copy any of the “basic” functions below into your own 
 <em>functions.bc</em> auxiliary file 
 to give you a more usable base to start using bc from,
-or feel free to fork/clone my personal working file(s) of
-<a href="https://github.com/mikepierce/GNU-bc-Functions">bc functions from GitHub</a>.
+or feel free to fork/clone my personal working collection 
+of bc functions from GitHub:
 </p>
+<nav>
+<ul>
+    <li><a class="url" href="https://github.com/mikepierce/GNU-bc-Functions">github.com/mikepierce/GNU-bc-Functions</a></li>
+</ul>
+</nav>
+
 <h3>Helpful Constants &amp; Functions</h3>
 <pre>
 <code class="language-python">pi=4*a(1)
@@ -928,16 +937,7 @@ define arcsin(x) {
 define arctan(x) { return a(x) }
 define arcsec(x) { return arccos(1/x) }
 define arccsc(x) { return arcsin(1/x) }
-define arccot(x) { return pi/2-a(x) }
-
-# Display the Pythagorean triple 
-# generated by integers m and n,
-# and return the hypotenuse
-define pythagtriple(m,n) {
-    print abs(n*n-m*m), "\n"
-    print abs(2*m*n), "\n"
-    return m*m+n*n
-}</code>
+define arccot(x) { return pi/2-a(x) }</code>
 </pre>
 
 <h3>Combinatorics</h3>
@@ -978,7 +978,7 @@ define pick(n,k) {
     and of the internet being a living, community-tended library of humanity’s collective knowledge,
     I don’t want this page to become a corpse of my sole authorship 
     cluttering the stacks of our library.
-    What a tragic abuse of the internet that would be.
+    What a tragic misuse of the internet that would be.
     No, I’d rather simply be the … maintainer? custodian? groundskeeper? … of this living guide.
     Please feel free to become a co-author and tend to this page with me.
 </p>
@@ -993,7 +993,7 @@ define pick(n,k) {
     My only requirement of co-authors of this instance
     is that you keep with the spirit of the page 
     as a <em>quick-start guide</em> written with an audience of 
-    mathematicians, instructors, and students in mind—professional programmers 
+    mathematicians, instructors, and students in mind — professional programmers 
     and Unix administrators are already well-served by the GNU bc manual itself.
 </p>
 </section>
