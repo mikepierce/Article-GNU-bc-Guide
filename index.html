@@ -14,7 +14,15 @@
     <link rel="stylesheet" type="text/css" media="all" href="../assets/main.css">
     <link rel="alternate" href="../feed.xml" type="application/atom+xml" title="Mike Pierce's Feed">
     <link rel="stylesheet" href="../assets/highlight.min.css">
-    <style>@media only print {h1 {font-size:2.5em;} body {line-height:calc(11em/9);} figure {width:83%;}}</style>
+    <style media="print">
+        @page {size:letter; margin:0.75in 0.4in 0.75in 0.4in;}
+        h1 {font-size:30pt;} 
+        h2 {font-size:18pt;} 
+        h3 {font-size:12pt;} 
+        body {font-size:9pt; line-height:calc(11em/9);} 
+        main {column-count:2; column-gap:0.2in; column-fill:auto;}
+        figure {width:80%;}
+    </style>
     <style>body{background-image:linear-gradient(transparent, var(--background)), url("banner.webp");}</style>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js" integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -27,7 +35,7 @@
 <h1>The GNU Basic Calculator (bc): a Quick-Start Guide for Mathematicians</h1>
 <ul>
     <li> <a href="..">Mike Pierce</a></li>
-    <li> Tended 4 January 2024 </li>
+    <li> Tended 16 May 2024 </li>
     <li class="screen"> <a href="GNU Basic Calculator (bc) for Mathematicians _ Mike Pierce.pdf">Print PDF</a></li>
     <li class="screen"> Contribute: <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">Fork on GitHub</a></li>
     <li class="print"> Hosted at <a class="url "href="https://org.coloradomesa.edu/~mapierce2/bc">coloradomesa.edu/~mapierce2/bc</a></li>
@@ -37,7 +45,7 @@
 <main>
 <section>
 <p>
-The <a href="https://en.wikipedia.org/wiki/Bc_(programming_language)" title="Wikipedia: bc (programming language)">GNU basic calculator (bc)</a>
+The <a href="https://en.wikipedia.org/wiki/Bc_(programming_language)" rel="external" title="Wikipedia: bc (programming language)">GNU basic calculator (bc)</a>
 is a free and open source command-line program 
 that performs arbitrary-precision calculations
 using the full capabilities of any computer.
@@ -52,11 +60,11 @@ extendable with user-written functions.
 <p>
 Professionally speaking, bc is the most elegant tool 
 for mathematicians to attain 
-<a href="https://urbigenous.net/library/power.html" title="a short story by Isaac Asimov">the feeling of power</a>
+<a href="https://urbigenous.net/library/power.html" rel="external" title="a short story by Isaac Asimov">the feeling of power</a>
 that comes with wielding a computer to do arbitrarily precise computations.
 Pedagogically speaking, bc provides many benefits:
 a means to subvert the pervasiveness of 
-<a href="https://gen.medium.com/big-calculator-how-texas-instruments-monopolized-math-class-67ee165045dc" title="Big Calculator: How Texas Instruments Monopolized Math Class">proprietary hardware</a>
+<a href="https://gen.medium.com/big-calculator-how-texas-instruments-monopolized-math-class-67ee165045dc" rel="external" title="Big Calculator: How Texas Instruments Monopolized Math Class">proprietary hardware</a>
 and software in classrooms,
 an easy way to demonstrate the computational capabilities of a computer to students,
 and also an accessible avenue for students to operate a computer as a calculator for themselves.
@@ -105,7 +113,7 @@ If not, you can install it using your package manager.
 For example on a Debian-based OS like Ubuntu 
 run <code>sudo apt install bc</code>.
 Similarly on macOS you can install bc via 
-the <a href="https://brew.sh">homebrew</a>
+the <a href="https://brew.sh" rel="external">homebrew</a>
 with <code>brew install bc</code>.
 </p>
 <p>
@@ -130,14 +138,14 @@ by including this line in your shell’s (bash, zsh, …) configuration file:
 <p>
 Although bc was originally written for unix-based operating systems,
 it’s been 
-<a href="http://gnuwin32.sourceforge.net/packages/bc.htm" title="Bc for Windows via GnuWin">ported to windows via GnuWin</a>.
+<a href="http://gnuwin32.sourceforge.net/packages/bc.htm" rel="external" title="Bc for Windows via GnuWin">ported to windows via GnuWin</a>.
 If you have administrative privileges on your Windows machine
 just download the Setup files to install bc.
 If not — like if you’re using a classroom computer 
 locked down by your school’s IT department — you can 
 “portably” install bc.
-Download the <a href="http://gnuwin32.sourceforge.net/downlinks/bc-bin-zip.php">Binaries</a> 
-and the <a href="http://gnuwin32.sourceforge.net/downlinks/bc-dep-zip.php">Dependencies</a>
+Download the <a href="http://gnuwin32.sourceforge.net/downlinks/bc-bin-zip.php" rel="external">Binaries</a> 
+and the <a href="http://gnuwin32.sourceforge.net/downlinks/bc-dep-zip.php" rel="external">Dependencies</a>
 zip archives from the GnuWin page.
 Extract those zip archives, and move the files somewhere convenient.
 Copy the file <em>readline5.dll</em> from the dependencies archive
@@ -175,7 +183,7 @@ and start it quickly by searching “bcmath” under the Windows Start menu.
 <section>
 <h2 id="usage"> Getting Started Using bc</h2>
 <p>
-The <a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html">bc manual</a> 
+The <a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html" rel="external">bc manual</a> 
 comprehensively describes its usage and features,
 so this quick-start guide will be a simple distillation 
 of the key ideas and quirks of using bc, 
@@ -247,7 +255,7 @@ a^2 + b^2</code>
 The special variable <code>scale</code> 
 gives you control over the fractional precision of bc’s output,
 setting the number of digits 
-to the right of the <a href="https://en.wikipedia.org/wiki/Decimal_separator#Radix_point" title="Wikipedia: Radix Point">radix point</a> 
+to the right of the <a href="https://en.wikipedia.org/wiki/Decimal_separator#Radix_point" rel="external" title="Wikipedia: Radix Point">radix point</a> 
 (decimal point in base ten)
 that bc will store during computations.
 This simple control over the precision of calculations
@@ -318,7 +326,7 @@ depending on the algorithmic complexity of your calculation
 and magnitude of your parameters.
 Discovering exactly what \(n\) must be in a given case
 requires one dive into the world of
-<a title="Wikipedia: Numerical Analysis" href="https://en.wikipedia.org/wiki/Numerical_analysis">numerical analysis</a>.
+<a href="https://en.wikipedia.org/wiki/Numerical_analysis" rel="external" title="Wikipedia: Numerical Analysis" >numerical analysis</a>.
 </p>
 
 <h3 id="pow">Handling Fractional Exponents</h3>
@@ -383,7 +391,7 @@ defines the following additional functions:
 </ul>
 <p>
 Only the trigonometric functions sine, cosine, and arctangent are included
-<a href="https://unix.stackexchange.com/q/652493/74616" title="'Who decided the bc math library will define sine cosine and arctangent?' on Unix.SE">for historical reasons</a>, 
+<a href="https://unix.stackexchange.com/q/652493/74616" rel="external" title="'Who decided the bc math library will define sine cosine and arctangent?' on Unix.SE">for historical reasons</a>, 
 but really that’s all you need:
 all other trigonometric functions can be expressed in terms of these three.
 Doing this is left to the reader as an exercise,
@@ -411,11 +419,11 @@ along with these functions to convert between degree and radian measure:
     one most useful to programmers,
     but would be remiss not to mention — 
     is its capability to do computations in 
-    <a href="https://en.wikipedia.org/wiki/Positional_notation#Base_of_the_numeral_system">bases</a> 2 through 36.
+    <a href="https://en.wikipedia.org/wiki/Positional_notation#Base_of_the_numeral_system" rel="external">bases</a> 2 through 36.
     The twenty-six capital letters of the alphabet 
     are used to represent digits beyond 9 as input; 
     this is why it’s 
-    <a href="https://unix.stackexchange.com/q/199615/74616">forbidden to use capital characters in variable names</a>.
+    <a href="https://unix.stackexchange.com/q/199615/74616" rel="external">forbidden to use capital characters in variable names</a>.
     By default, user input and displayed output 
     are supposed by bc to be in base-ten (decimal).
     You can tell bc to display output in different base
@@ -460,7 +468,7 @@ But GNU bc is the version you’d most likely encounter in the wild.
 The syntax of bc is similar to the syntax 
 of the C programming language, but much looser.
 If you have no programming experience you should read the
-<a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html#SEC15"><em>Statements</em> section of the bc manual</a>
+<a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html#SEC15" rel="external"><em>Statements</em> section of the bc manual</a>
 for a more thorough treatment.
 Otherwise if you have some experience programming in C or in any other modern language, 
 this section will help you translate that experience over to bc. 
@@ -489,7 +497,7 @@ multiple independent commands together, and either semicolons <code>;</code>
 or newlines (or both) separate those independent commands.
 For example, here’s a function that returns the \(n\)<sup>th</sup> Fibonacci number
 using the classic 
-<a href="https://en.wikipedia.org/wiki/Recursion_(computer_science)" title="Wikipedia: Recursion (computer science)">recursive</a> definition.
+<a href="https://en.wikipedia.org/wiki/Recursion_(computer_science)" rel="external" title="Wikipedia: Recursion (computer science)">recursive</a> definition.
 </p>
 <pre>
 <code class="language-c">define fibonacci (n) { 
@@ -574,7 +582,7 @@ print x</code>
 <p>
 With the exception of C’s bitwise operations 
 and two other special cases, bc shares all of C’s 
-<a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html#SEC10">arithmetic, assignment, comparison, and logical operators</a>.
+<a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html#SEC10" rel="external">arithmetic, assignment, comparison, and logical operators</a>.
 Those two special cases are these:
 </p>
 <ul>
@@ -627,7 +635,7 @@ Like simple variables, arrays don’t have to be initialized,
 and the size of an array never needs to be declared.
 The maximum size of an array in bc is 
 set as <code>BC_DIM_MAX</code>,
-<a href="https://unix.stackexchange.com/q/704891/74616">a value chosen at compile time</a>.
+<a href="https://unix.stackexchange.com/q/704891/74616" rel="external">a value chosen at compile time</a>.
 In my current version of bc, this value is \(2^{24}\,.\)
 </p>
 <p>
@@ -768,7 +776,7 @@ here are some tasks you can complete as practice.
 <p>
 I’ve written functions to complete some of these tasks
 in my own <em>functions.bc</em> file,
-<a href="https://github.com/mikepierce/GNU-bc-Functions">which you can find on GitHub</a>,
+<a href="https://github.com/mikepierce/GNU-bc-Functions" rel="external">which you can find on GitHub</a>,
 in case you’d like to compare solutions.
 </p>
 <ol>
@@ -821,12 +829,12 @@ in case you’d like to compare solutions.
         <p>
         For a differentiable function <code>f</code>=\(f\) 
         and its derivative <code>ff</code>=\(f'\) 
-        implement <a title="Wikipedia: Newton's Method" href="https://en.wikipedia.org/wiki/Newton's_method">Newton’s method</a> 
+        implement <a href="https://en.wikipedia.org/wiki/Newton's_method"rel="external" title="Wikipedia: Newton's Method" >Newton’s method</a> 
         of approximating a root of \(f\).
         </p>
         <p>
         Then use this function to compute
-        the <a title="Wikipedia: Dottie Number" href="https://en.wikipedia.org/wiki/Dottie_number">Dottie number</a>,
+        the <a href="https://en.wikipedia.org/wiki/Dottie_number" rel="external" title="Wikipedia: Dottie Number">Dottie number</a>,
         the constant defined to be the single real solution
         to the equation \(\cos(x) = x\,,\)
         accurate to 42 decimal places.
@@ -850,27 +858,27 @@ in case you’d like to compare solutions.
 <section>
 <h2 id="links"> Links &amp; References </h2>
 <p> 
-    See the <a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html">GNU bc manual</a> 
+    See the <a href="https://www.gnu.org/software/bc/manual/html_mono/bc.html" rel="external">GNU bc manual</a> 
     to learn <em>all</em> of bc’s functionality.
     If you have a question and you can’t find the answer in the manual,
     you can ask general questions about bc on the
-    <a href="https://unix.stackexchange.com/questions/tagged/bc?sort=newest">Unix &amp; Linux Stack Exchange</a>, 
+    <a href="https://unix.stackexchange.com/questions/tagged/bc?sort=newest" rel="external">Unix &amp; Linux Stack Exchange</a>, 
     or programming-related questions about bc on 
-    <a href="https://stackoverflow.com/questions/tagged/bc">Stack Overflow</a>. 
+    <a href="https://stackoverflow.com/questions/tagged/bc" rel="external">Stack Overflow</a>. 
 </p>
 <p> 
     The maintainer of <code>phodd.net</code>
-    has authored a huge <a href="http://phodd.net/gnu-bc/">library of bc functions</a> 
-    and written a helpful <a href="http://phodd.net/gnu-bc/bcfaq.html">bc FAQ page</a>.
+    has authored a huge <a href="http://phodd.net/gnu-bc/" rel="external">library of bc functions</a> 
+    and written a helpful <a href="http://phodd.net/gnu-bc/bcfaq.html" rel="external">bc FAQ page</a>.
     Additionally, Keith Matthews has 
-    written <a href="http://www.numbertheory.org/gnubc/gnubc.html">some number theory programs for bc</a>.
+    written <a href="http://www.numbertheory.org/gnubc/gnubc.html" rel="external">some number theory programs for bc</a>.
     So if you need a specific algorithm you don’t want to implement yourself, 
     these are the first places you should check.
 </p> 
 <p> 
     And if you’re ever on Twitter having an argument 
     that could be settled with a computation, there is
-    <a href="https://twitter.com/bc_l">a Twitter bot @bc_l that will execute bc code</a>.  
+    <a href="https://twitter.com/bc_l" rel="external">a Twitter bot @bc_l that will execute bc code</a>.  
 </p>
 </section>
 
@@ -888,7 +896,7 @@ of bc functions from GitHub:
 </p>
 <nav>
 <ul>
-    <li><a class="url" href="https://github.com/mikepierce/GNU-bc-Functions">github.com/mikepierce/GNU-bc-Functions</a></li>
+    <li><a class="url" href="https://github.com/mikepierce/GNU-bc-Functions" rel="external">github.com/mikepierce/GNU-bc-Functions</a></li>
 </ul>
 </nav>
 
@@ -974,7 +982,7 @@ define pick(n,k) {
 <h2 id="fork"> Fork this Guide on GitHub </h2>
 <p>
     In keeping with the 
-    <a href="https://maggieappleton.com/garden-history" title="Maggie Appleton: A Brief History & Ethos of the Digital Garden">ethos of digital gardening</a>,
+    <a href="https://maggieappleton.com/garden-history" rel="external" title="Maggie Appleton: A Brief History & Ethos of the Digital Garden">ethos of digital gardening</a>,
     and of the internet being a living, community-tended library of humanity’s collective knowledge,
     I don’t want this page to become a corpse of my sole authorship 
     cluttering the stacks of our library.
@@ -984,11 +992,11 @@ define pick(n,k) {
 </p>
 <h4>CONTRIBUTING</h4>
 <p>
-    The <a href="https://web.dev/learn/html/semantic-html">semantic HTML</a> for this page is 
-    <a href="https://github.com/mikepierce/Article-GNU-bc-Guide">hosted on GitHub</a>,
+    The <a rel="external" href="https://web.dev/learn/html/semantic-html">semantic HTML</a> for this page is 
+    <a rel="external" href="https://github.com/mikepierce/Article-GNU-bc-Guide">hosted on GitHub</a>,
     licensed as <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1">CC BY-NC-SA 4.0</a>.
     If you’d like to suggest an edit or addition to my instance of this guide,
-    <a href="https://github.com/mikepierce/Article-GNU-bc-Guide/issues">create an issue on GitHub</a>, 
+    <a rel="external" href="https://github.com/mikepierce/Article-GNU-bc-Guide/issues">create an issue on GitHub</a>, 
     fork the repository, make your changes, and submit a pull request.
     My only requirement of co-authors of this instance
     is that you keep with the spirit of the page 
@@ -1001,9 +1009,8 @@ define pick(n,k) {
 
 <footer>
 <ul>
-    <li> © <a href="..">Mike Pierce</a> </li>
-    <li> <a href="https://www.coloradomesa.edu/math-stat">CMU Math</a> </li>
-    <li> License <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1">CC BY-NC-SA 4.0</a> </li>
+    <li> © <a href="https://org.coloradomesa.edu/~mapierce2/">Mike Pierce</a> </li>
+    <li> HTML/Content License <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></li>
 </ul>
 <cite>
     Banner and thumb use <q><a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/46191841@N00/3676227162">Calculator</a></q> by <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/46191841@N00">Jorge Franganillo</a>, licensed under <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by/2.0/?ref=openverse">CC BY 2.0</a>
